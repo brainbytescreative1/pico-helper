@@ -130,3 +130,12 @@
 .hide-clone-title [data-name="theme_colors"] .acf-label {
     display: none !important;
 }
+/** gutenberg **/
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    line-height: 1.2 !important;
+}

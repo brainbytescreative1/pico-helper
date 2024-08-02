@@ -59,7 +59,7 @@ if ( have_rows('columns') ) {
     $row_classes[] = 'row';
     $row_classes[] = 'element-row';
     $row_inner_classes[] = 'row-inner';
-
+    
     // column classes
     $col_classes = [];
     $col_inner_classes = [];
@@ -117,6 +117,15 @@ if ( have_rows('columns') ) {
         $col_width_pass_inside = 'auto';
     } else {
         $col_width_pass_inside = $col_width;
+    }
+
+    $container_spacing_mobile = get_field('container_spacing_mobile', 'layout');
+    if ( $container_spacing_mobile && ( $container_spacing_mobile !== 'default' ) ) {
+        $row_classes[] = 'gy-'. $mobile_breakpoint .'-0';
+        $row_classes[] = 'gy-' . $container_spacing_mobile;
+    } else {
+        $row_classes[] = 'gy-lg-0';
+        $row_classes[] = 'gy-1';
     }
 
     // column gap

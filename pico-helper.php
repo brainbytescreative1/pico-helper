@@ -24,14 +24,14 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( !class_exists('acf') ) { // if ACF Pro plugin does not currently exist
 
-    add_filter('includes/acf/settings/path', 'cysp_acf_settings_path');
-    function cysp_acf_settings_path( $path ) {
+    add_filter('includes/acf/settings/path', 'pico_acf_settings_path');
+    function pico_acf_settings_path( $path ) {
         $path = plugin_dir_path( __FILE__ ) . 'includes/acf/';
         return $path;
     }
 
-    add_filter('includes/acf/settings/dir', 'cysp_acf_settings_dir');
-    function cysp_acf_settings_dir( $path ) {
+    add_filter('includes/acf/settings/dir', 'pico_acf_settings_dir');
+    function pico_acf_settings_dir( $path ) {
         $dir = plugin_dir_url( __FILE__ ) . 'includes/acf/';
         return $dir;
     }
@@ -40,34 +40,30 @@ if ( !class_exists('acf') ) { // if ACF Pro plugin does not currently exist
 
     include_once( plugin_dir_path( __FILE__ ) . 'includes/acf/acf.php' );
 
-    add_filter('includes/acf/settings/save_json', 'cysp_acf_json_save_point');
-    function cysp_acf_json_save_point( $path ) {
+    add_filter('includes/acf/settings/save_json', 'pico_acf_json_save_point');
+    function pico_acf_json_save_point( $path ) {
         $path = plugin_dir_path( __FILE__ ) . 'acf-json/';
         return $path;
     }
 
-    add_filter('includes/acf/settings/load_json', 'cysp_acf_json_load_point');
+    add_filter('includes/acf/settings/load_json', 'pico_acf_json_load_point');
 
-    add_filter( 'site_transient_update_plugins', 'cysp_stop_acf_update_notifications', 11 );
-    function cysp_stop_acf_update_notifications( $value ) {
+    add_filter( 'site_transient_update_plugins', 'pico_stop_acf_update_notifications', 11 );
+    function pico_stop_acf_update_notifications( $value ) {
         unset( $value->response[ plugin_dir_path( __FILE__ ) . 'includes/acf/acf.php' ] );
         return $value;
     }
 
 } else {
 
-    add_filter('includes/acf/settings/load_json', 'cysp_acf_json_load_point');
+    add_filter('includes/acf/settings/load_json', 'pico_acf_json_load_point');
 
 }
 
 // load json
 function my_acf_json_load_point( $paths ) {
-    // Remove the original path (optional).
     unset($paths[0]);
-
-    // Append the new path and return it.
     $paths[] = plugin_dir_path( __FILE__ ) . '/acf-json';
-
     return $paths;    
 }
 add_filter( 'acf/settings/load_json', 'my_acf_json_load_point' );
@@ -80,20 +76,20 @@ add_filter( 'acf/settings/save_json', 'my_acf_json_save_point' );
 
 /*** theme functions ***/
 
-$theme = wp_get_theme(); // gets the current theme
+$theme = wp_get_theme(); 
 if ( 'picostrap5' === $theme->parent_theme ) {
 
     // add gutenberg styles
     add_action( 'after_setup_theme', 'pico_gutenberg_css' );
     function pico_gutenberg_css(){
         add_theme_support( 'editor-styles' );
-        add_editor_style( get_stylesheet_directory_uri() . '/css-output/bundle.css' );
-        add_editor_style( plugin_dir_url( __FILE__ ) . '/css/bbc-style.css' );
+        add_editor_style( '/css-output/bundle.css' );
     }
 
     // enqueue custom stylesheet
     function bbc_stylesheet_css_js() {
         wp_enqueue_style( 'bbc_style', plugin_dir_url( __FILE__ ) . 'css/bbc-style.css', array(), null );
+        wp_enqueue_style( 'dynamic_styles', plugin_dir_url( __FILE__ ) . 'css/custom-styles.css' );
     }
     add_action( 'wp_enqueue_scripts', 'bbc_stylesheet_css_js' );
 
@@ -101,13 +97,7 @@ if ( 'picostrap5' === $theme->parent_theme ) {
     add_action( 'admin_enqueue_scripts', 'load_admin_style' );
     function load_admin_style() {
         wp_enqueue_style( 'admin_style', plugin_dir_url( __FILE__ ) . 'css/bbc-admin-style.css', array(), null );
-    }
-
-    // add styles to pages with ACF included
-    add_action('acf/input/admin_enqueue_scripts', 'load_bundle_admin');
-    function load_bundle_admin() {
-        wp_enqueue_style( 'bundle_style', get_stylesheet_directory_uri() . '/css-output/bundle.css', array(), null );
-        wp_enqueue_style( 'bbc_style', plugin_dir_url( __FILE__ ) . 'css/bbc-style.css', array(), null );
+        wp_enqueue_style( 'bbc_gutenberg_style', plugin_dir_url( __FILE__ ) . 'css/bbc-style.css', array(), null );
     }
 
     // register blocks
@@ -121,6 +111,8 @@ if ( 'picostrap5' === $theme->parent_theme ) {
 
     // hide default header
     add_filter('picostrap_enable_header_elements', '__return_false');
+
+    // add header from plugin
     function add_code_to_body() {
         echo '<header>';
             include_once( __DIR__ . '/partials/header-navbar.php');
@@ -129,7 +121,7 @@ if ( 'picostrap5' === $theme->parent_theme ) {
     add_action( 'wp_body_open', 'add_code_to_body' );
 
     // font awesome
-    add_action('wp_head', 'add_font_awesome');
+    //add_action('wp_head', 'add_font_awesome');
     function add_font_awesome(){ ?>
         <script src="https://kit.fontawesome.com/ec15ef7364.js" crossorigin="anonymous"></script>
     <?php };
@@ -146,11 +138,76 @@ if ( 'picostrap5' === $theme->parent_theme ) {
     }
     add_action( 'wp_footer', 'footer_widget' );
 
+    function generate_options_css() {
+        $ss_dir = __DIR__;
+        ob_start(); // Capture all output into buffer
+        require($ss_dir . '/css/dynamic.php'); // Grab the custom-style.php file
+        $css = ob_get_clean(); // Store output in a variable, then flush the buffer
+        file_put_contents($ss_dir . '/css/custom-styles.css', $css, LOCK_EX); // Save it as a css file
+    }
+    add_action( 'acf/save_post', 'generate_options_css', 20 ); //Parse the output and write the CSS file on post save
+
+    // modify the path to the icons directory
+    add_filter('acf_icon_path_suffix', 'acf_icon_path_suffix');
+    function acf_icon_path_suffix($path_suffix) {
+        return '/vendor/twbs/bootstrap-icons/icons/';
+    }
+
+    // modify the path to the above prefix
+    add_filter('acf_icon_path', 'acf_icon_path');
+    function acf_icon_path($path_suffix) {
+        return plugin_dir_path(__FILE__);
+    }
+
+    // modify the URL to the icons directory to display on the page
+    add_filter('acf_icon_url', 'acf_icon_url');
+    function acf_icon_url($path_suffix) {
+        return plugin_dir_url( __FILE__ );
+    }
+
+    // override page templates
+    function override_page_templates( $template ) {
+        if ( is_page() ) {
+            $template = plugin_dir_path(__FILE__) . 'page-templates/page.php';
+        }
+        elseif ( is_single() ) {
+            $template = plugin_dir_path(__FILE__) . 'page-templates/single.php';
+        }
+        return $template;
+    }
+    add_filter( 'template_include', 'override_page_templates' );
+
+    // mce fix
+    function slug_editor_body_margin_fix( $settings ) {
+        if ( isset( $settings['content_style'] ) ) {
+            $settings['content_style'] .= ' body#tinymce { margin: 9px 10px; }';
+        } else {
+            $settings['content_style'] = 'body#tinymce { margin: 9px 10px; }';
+        }
+        return $settings;
+    }
+    add_filter( 'tiny_mce_before_init', 'slug_editor_body_margin_fix' );
+
+    // prevent deferring custom functions
+    add_filter( 'rocket_defer_inline_exclusions', function( $inline_exclusions_list ) {
+        if ( ! is_array( $inline_exclusions_list ) ) {
+            $inline_exclusions_list = array();
+        }
+    
+        // Duplicate this line if you need to exclude more
+        $inline_exclusions_list[] = 'essential-scripts';
+        $inline_exclusions_list[] = 'firstElementSpacing';
+        $inline_exclusions_list[] = 'headerHeight';
+        $inline_exclusions_list[] = 'stickyNav';
+        $inline_exclusions_list[] = 'backToTopButton';
+    
+        return $inline_exclusions_list;
+    } );
+
     function initialize_functions(){
 
         // dynamic stylesheet
         include_once( __DIR__ . '/css/root.php');
-        //include_once( __DIR__ . '/css/dynamic.php');
 
         // include separate functions files
         include_once( __DIR__ . '/functions/blocks.php');
@@ -182,71 +239,5 @@ if ( 'picostrap5' === $theme->parent_theme ) {
 
     }
     add_action( 'init', 'initialize_functions', 10 );
-
-    function generate_options_css() {
-        $ss_dir = __DIR__;
-        ob_start(); // Capture all output into buffer
-        require($ss_dir . '/css/dynamic.php'); // Grab the custom-style.php file
-        $css = ob_get_clean(); // Store output in a variable, then flush the buffer
-        file_put_contents($ss_dir . '/css/custom-styles.css', $css, LOCK_EX); // Save it as a css file
-    }
-    add_action( 'acf/save_post', 'generate_options_css', 20 ); //Parse the output and write the CSS file on post save (thanks Esmail Ebrahimi)
-    wp_enqueue_style( 'custom-styles', plugin_dir_url( __FILE__ ) . 'css/custom-styles.css' );
-
-    // modify the path to the icons directory
-    add_filter('acf_icon_path_suffix', 'acf_icon_path_suffix');
-    function acf_icon_path_suffix($path_suffix) {
-        return '/vendor/twbs/bootstrap-icons/icons/';
-    }
-
-    // modify the path to the above prefix
-    add_filter('acf_icon_path', 'acf_icon_path');
-    function acf_icon_path($path_suffix) {
-        return plugin_dir_path(__FILE__);
-    }
-
-    // modify the URL to the icons directory to display on the page
-    add_filter('acf_icon_url', 'acf_icon_url');
-    function acf_icon_url($path_suffix) {
-        return plugin_dir_url( __FILE__ );
-    }
-
-    function override_page_templates( $template ) {
-        if ( is_page() ) {
-            $template = plugin_dir_path(__FILE__) . 'page-templates/page.php';
-        }
-        elseif ( is_single() ) {
-            $template = plugin_dir_path(__FILE__) . 'page-templates/single.php';
-        }
-        return $template;
-    }
-    add_filter( 'template_include', 'override_page_templates' );
-
-    // mce fix
-    function slug_editor_body_margin_fix( $settings ) {
-        if ( isset( $settings['content_style'] ) ) {
-            $settings['content_style'] .= ' body#tinymce { margin: 9px 10px; }';
-        } else {
-            $settings['content_style'] = 'body#tinymce { margin: 9px 10px; }';
-        }
-        return $settings;
-    }
-    add_filter( 'tiny_mce_before_init', 'slug_editor_body_margin_fix' );
-
-    // prevent deferring custom functions
-    add_filter( 'rocket_defer_inline_exclusions', function( $inline_exclusions_list ) {
-        if ( ! is_array( $inline_exclusions_list ) ) {
-        $inline_exclusions_list = array();
-        }
-    
-        // Duplicate this line if you need to exclude more
-        $inline_exclusions_list[] = 'essential-scripts';
-        $inline_exclusions_list[] = 'firstElementSpacing';
-        $inline_exclusions_list[] = 'headerHeight';
-        $inline_exclusions_list[] = 'stickyNav';
-        $inline_exclusions_list[] = 'backToTopButton';
-    
-        return $inline_exclusions_list;
-    } );
 
 }

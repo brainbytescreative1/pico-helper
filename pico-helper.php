@@ -127,7 +127,7 @@ $theme = wp_get_theme(); // gets the current theme
 if ( 'picostrap5' === $theme->parent_theme ) {
 
     // add gutenberg styles
-    //add_action( 'after_setup_theme', 'pico_gutenberg_css' );
+    add_action( 'after_setup_theme', 'pico_gutenberg_css' );
     function pico_gutenberg_css(){
         add_theme_support( 'editor-styles' );
         add_editor_style( get_stylesheet_directory_uri() . '/css-output/bundle.css' );

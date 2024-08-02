@@ -1,0 +1,170 @@
+{
+    "key": "group_64ef892c29f1f",
+    "title": "Borders",
+    "fields": [
+        {
+            "key": "field_6532814641c47",
+            "label": "Border Radius All",
+            "name": "border_radius_all",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "default",
+                "1": "sm",
+                "2": "md",
+                "3": "lg",
+                "4": "xl",
+                "5": "xxl"
+            },
+            "default_value": "default",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_64ef8a3e1b7f9",
+            "label": "Border Radius - Top Left",
+            "name": "border-top-left-radius",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "default",
+                "1": "sm",
+                "2": "md",
+                "3": "lg",
+                "4": "xl",
+                "5": "xxl"
+            },
+            "default_value": "default",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_64ef8a931b7fa",
+            "label": "Border Radius - Top Right",
+            "name": "border-top-right-radius",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "default",
+                "1": "sm",
+                "2": "md",
+                "3": "lg",
+                "4": "xl",
+                "5": "xxl"
+            },
+            "default_value": "default",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_64ef8bcd1b802",
+            "label": "Border Radius - Bottom Left",
+            "name": "border-bottom-left-radius",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "default",
+                "1": "sm",
+                "2": "md",
+                "3": "lg",
+                "4": "xl",
+                "5": "xxl"
+            },
+            "default_value": "default",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_64ef8aa51b7fb",
+            "label": "Border Radius - Bottom Right",
+            "name": "border-bottom-right-radius",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "default",
+                "1": "sm",
+                "2": "md",
+                "3": "lg",
+                "4": "xl",
+                "5": "xxl"
+            },
+            "default_value": "default",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "left",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": false,
+    "description": "",
+    "show_in_rest": 0,
+    "acfe_display_title": "",
+    "acfe_autosync": [
+        "json"
+    ],
+    "acfe_form": 0,
+    "acfe_meta": "",
+    "acfe_note": "",
+    "modified": 1722007380,
+    "acfe_categories": {
+        "clone": "Clone"
+    }
+}

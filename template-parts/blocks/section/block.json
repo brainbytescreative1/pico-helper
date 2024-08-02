@@ -1,0 +1,29 @@
+{
+    "name": "acf/section",
+    "title": "Section",
+    "description": "A custom testimonial block.",
+    "script": "",
+    "category": "bbc",
+    "icon": "carrot",
+    "textdomain": "bbc",
+    "apiVersion": 2,
+    "keywords": [],
+    "acf": {
+        "mode": "preview",
+	    "renderTemplate": "section.php"
+    },
+    "supports": {
+        "align": false,
+        "anchor": false,
+        "alignContent": false,
+        "color": {
+            "text": false,
+            "background": true,
+            "link": false
+        },
+        "alignText": false,
+        "fullHeight": false
+    },
+    "attributes": {
+    }
+}

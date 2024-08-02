@@ -1,0 +1,283 @@
+{
+    "key": "group_64d100d8b38d6",
+    "title": "Flex",
+    "fields": [
+        {
+            "key": "field_64d100d84a7f7",
+            "label": "Enable Flex",
+            "name": "enable_flex",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "disable": "Disabled",
+                "enable": "Enabled"
+            },
+            "default_value": "disable",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_64d10dd08c244",
+            "label": "Mobile Flex",
+            "name": "mobile_flex",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "disable": "Disabled",
+                "enable": "Enabled"
+            },
+            "default_value": "disable",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_64d1078d4a7fb",
+            "label": "Flex Direction",
+            "name": "flex_direction",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64d100d84a7f7",
+                        "operator": "==",
+                        "value": "enable"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "normal": "Normal",
+                "flex-row": "Row",
+                "flex-column": "Column"
+            },
+            "default_value": "normal",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_64d10a1c4a7fd",
+            "label": "Flex Wrap",
+            "name": "flex_wrap",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64d100d84a7f7",
+                        "operator": "==",
+                        "value": "enable"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "normal": "Normal",
+                "flex-wrap": "Wrap",
+                "flex-nowrap": "No Wrap"
+            },
+            "default_value": "normal",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_64d10a5b4a7fe",
+            "label": "Align Content",
+            "name": "align_content",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64d100d84a7f7",
+                        "operator": "==",
+                        "value": "enable"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "normal": "normal",
+                "align-content-center": "center",
+                "align-content-start": "flex-start",
+                "align-content-end": "flex-end",
+                "align-content-around": "space-around",
+                "align-content-between": "space-between",
+                "align-content-stretch": "stretch"
+            },
+            "default_value": "normal",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_64d10a9c4a7ff",
+            "label": "Justify Content",
+            "name": "justify_content",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64d100d84a7f7",
+                        "operator": "==",
+                        "value": "enable"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "normal": "normal",
+                "justify-content-center": "center",
+                "justify-content-start": "flex-start",
+                "justify-content-end": "flex-end",
+                "justify-content-between": "space-between",
+                "justify-content-around": "space-around",
+                "justify-content-evenly": "space-evenly"
+            },
+            "default_value": "normal",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_64d10ae34a800",
+            "label": "Align Items",
+            "name": "align_items",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64d100d84a7f7",
+                        "operator": "==",
+                        "value": "enable"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "normal": "normal",
+                "align-items-center": "center",
+                "align-items-start": "flex-start",
+                "align-items-end": "flex-end",
+                "align-items-stretch": "stretch",
+                "align-items-baseline": "baseline"
+            },
+            "default_value": "normal",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_64d10cff4a802",
+            "label": "Last Element",
+            "name": "last_element",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64d100d84a7f7",
+                        "operator": "==",
+                        "value": "enable"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "normal": "Normal",
+                "bottom": "Align Bottom"
+            },
+            "default_value": "normal : Normal",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "left",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": false,
+    "description": "",
+    "show_in_rest": 0,
+    "acfe_display_title": "",
+    "acfe_autosync": [
+        "json"
+    ],
+    "acfe_form": 0,
+    "acfe_meta": "",
+    "acfe_note": "",
+    "modified": 1716582570,
+    "acfe_categories": {
+        "global-functions": "Global Functions"
+    }
+}

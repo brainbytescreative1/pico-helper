@@ -1,0 +1,98 @@
+{
+    "key": "group_646f908576c59",
+    "title": "Theme Colors",
+    "fields": [
+        {
+            "key": "field_646f9085bbc67",
+            "label": "Theme Colors",
+            "name": "theme_colors",
+            "aria-label": "",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "site-colors-field",
+                "id": ""
+            },
+            "choices": {
+                "text": "Text"
+            },
+            "default_value": null,
+            "return_format": "value",
+            "allow_null": 1,
+            "other_choice": 0,
+            "layout": "horizontal",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_646fcce252580",
+            "label": "Transparency",
+            "name": "transparency",
+            "aria-label": "",
+            "type": "range",
+            "instructions": "Transparency added to overlay if value is below 100.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 100,
+            "min": "",
+            "max": "",
+            "step": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_649b4b3456089",
+            "label": "Custom Color",
+            "name": "custom_color",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "Custom color will override theme color",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "enable_opacity": 0,
+            "return_format": "string"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "left",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": false,
+    "description": "",
+    "show_in_rest": 0,
+    "acfe_display_title": "",
+    "acfe_autosync": [
+        "json"
+    ],
+    "acfe_form": 0,
+    "acfe_meta": "",
+    "acfe_note": "",
+    "modified": 1716582575,
+    "acfe_categories": {
+        "global": "Global"
+    }
+}

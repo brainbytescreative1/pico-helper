@@ -51,6 +51,11 @@ function my_wp_nav_menu_objects( $items, $args ) {
 
         $wrapper_classes = [];
 
+        $icon = null;
+
+        $icon_classes = [];
+        $icon_styles = [];
+
         // icons
         $add_icon = get_field('add_icon', $item);
         
@@ -60,21 +65,19 @@ function my_wp_nav_menu_objects( $items, $args ) {
             $fa_icon = null;
             $image_icon = null;
 
+            $wrapper_classes[] = 'menu-icon';
+            $wrapper_classes[] = $add_icon . '-icon';
+
+            $wrapper_classes[] = 'd-flex';
+            $wrapper_classes[] = 'align-items-center';
+
             $styles = get_field('icon_styles', $item);
             if ( $styles ) {
-
-                $icon_classes = [];
-                $icon_styles = [];
 
                 $svg_color = '';
                 $svg_width = '';
                 $svg_height = '';
                 
-                $wrapper_classes[] = 'menu-icon';
-                $wrapper_classes[] = $add_icon . '-icon';
-
-                $wrapper_classes[] = 'd-flex';
-                $wrapper_classes[] = 'align-items-center';
                 $position = if_array_value($styles, 'position');
                 if ( $position === 'right' ) {
                     $wrapper_classes[] = 'flex-row-reverse';
@@ -115,12 +118,14 @@ function my_wp_nav_menu_objects( $items, $args ) {
                     $icon_classes[] = $styles['icon_classes'];
                 }
                 
-                $icon_classes = implode(' ', $icon_classes);
-                $icon_styles = implode(' ', $icon_styles);
-                
             }
 
-            $icon = $icon_classes;
+            $icon_classes = implode(' ', $icon_classes);
+            $icon_styles = implode(' ', $icon_styles);
+
+            if ( $icon_classes ) {
+                $icon = $icon_classes;
+            }
             
             $bootstrap_icon = get_field('bootstrap_icon', $item);
             $font_awesome_icon = get_field('font_awesome_icon', $item);

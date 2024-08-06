@@ -278,6 +278,8 @@ if( get_row_layout() == 'icon_list' ):
 
                 foreach( $icon_list as $icon ) {
 
+                    $return_icon = get_icon_bbc($icon['icon']);
+
                     // initialize classes arrays
                     $icon_classes = [];
                     $icon_styles = [];
@@ -302,7 +304,6 @@ if( get_row_layout() == 'icon_list' ):
                     if ( $icon_color['theme_colors'] ) {
                         $text_classes[] = 'text-' . $text_color['theme_colors'];
                     }
-                    
 
                     if ( $icon_size !== 'default' ) {
                         $icon_classes[] = $icon_size;
@@ -373,9 +374,9 @@ if( get_row_layout() == 'icon_list' ):
                         ?>
                         <li class="<?=$list_item_classes?>">
                             <a href="<?=$url?>" title="<?=$url?>" class="" target="<?=$target?>">
-                                <?php if ( $icon['icon'] ) { ?>
+                                <?php if ( $return_icon ) { ?>
                                     <span class="<?=$icon_classes?>"<?=$icon_margin_top?>>
-                                        <i class="<?=$icon['icon']?>" aria-hidden="true"></i>
+                                        <?=$return_icon?>
                                     </span>
                                 <?php } ?>
                                 <?php if ( $title ) { ?>
@@ -390,9 +391,9 @@ if( get_row_layout() == 'icon_list' ):
                     } elseif ( $text_content ) { ?>
 
                         <li class="<?=$list_item_classes?>">
-                            <?php if ( $icon['icon'] ) { ?>
-                                <span class="<?=$icon_classes?>">
-                                    <i class="<?=$icon['icon']?>" aria-hidden="true"<?=$icon_margin_top?>></i>
+                            <?php if ( $return_icon ) { ?>
+                                <span class="<?=$icon_classes?>"<?=$icon_margin_top?>>
+                                    <?=$return_icon?>
                                 </span>
                             <?php } ?>
                             <?php if ( $text_content ) { ?>

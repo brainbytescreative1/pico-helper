@@ -40,8 +40,14 @@ if( get_row_layout() == 'divider' ):
 
         $alignment = $divider['alignment'];
         if ( $alignment ) {
-            $divider_classes[] = 'align-' . $alignment;
+            $alignment = match ($alignment) {
+                'left' => 'ms-0 me-auto',
+                'center' => 'ms-auto me-auto',
+                'right' => 'ms-auto me-0',
+            };
+            $divider_classes[] = $alignment;
         }
+        
 
         $additional_classes = $divider['additional_classes'];
         if ( $additional_classes ) {
@@ -53,12 +59,12 @@ if( get_row_layout() == 'divider' ):
         }
 
         // process divider classes and styles
-        $divider_classes = implode(' ', $divider_classes);
-        $divider_styles = implode(' ', $divider_styles);
+        $divider_classes = trim(implode(' ', $divider_classes));
+        $divider_styles = trim(implode(' ', $divider_styles));
         
         ?>
 
-        <div class="<?=esc_attr($divider_classes)?>" style="<?=esc_attr($divider_styles)?>"></div>
+        <p class="<?=esc_attr($divider_classes)?>" style="<?=esc_attr($divider_styles)?>"></p>
 
     <?php }
 

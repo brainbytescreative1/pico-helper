@@ -1,6 +1,6 @@
 {
     "key": "group_646e2732a5a34",
-    "title": "Section",
+    "title": "Section Block",
     "fields": [
         {
             "key": "field_64c171e74d66b",
@@ -796,11 +796,11 @@
             "search_placeholder": ""
         },
         {
-            "key": "field_66705456c5e83",
-            "label": "Column Gap Horizontal",
-            "name": "column_gap",
+            "key": "field_66b22365a549a",
+            "label": "Horizontal Gap Desktop",
+            "name": "horizontal_gap_desktop",
             "aria-label": "",
-            "type": "select",
+            "type": "button_group",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -812,46 +812,23 @@
             "choices": {
                 "default": "Default",
                 "none": "None",
-                "custom": "Custom"
+                "1": "sm",
+                "2": "md",
+                "3": "lg",
+                "4": "xl",
+                "5": "xxl"
             },
             "default_value": "default",
             "return_format": "value",
-            "multiple": 0,
             "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "allow_custom": 0,
-            "search_placeholder": ""
+            "layout": "horizontal"
         },
         {
-            "key": "field_66705498c5e84",
-            "label": "Custom Column Gap Horizontal",
-            "name": "custom_gap",
+            "key": "field_66b223b1a549b",
+            "label": "Horizontal Gap Mobile",
+            "name": "horizontal_gap_mobile",
             "aria-label": "",
-            "type": "number",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "min": "",
-            "max": "",
-            "placeholder": "",
-            "step": "",
-            "prepend": "",
-            "append": "rem"
-        },
-        {
-            "key": "field_6699a4dca8395",
-            "label": "Column Gap Vertical",
-            "name": "column_gap_vertical",
-            "aria-label": "",
-            "type": "select",
+            "type": "button_group",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -862,25 +839,24 @@
             },
             "choices": {
                 "default": "Default",
-                "margin-bottom": "Margin-Bottom",
-                "custom": "Custom"
+                "none": "None",
+                "1": "sm",
+                "2": "md",
+                "3": "lg",
+                "4": "xl",
+                "5": "xxl"
             },
             "default_value": "default",
             "return_format": "value",
-            "multiple": 0,
             "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "allow_custom": 0,
-            "search_placeholder": ""
+            "layout": "horizontal"
         },
         {
-            "key": "field_6699a4e8a8396",
-            "label": "Custom Column Gap Vertical",
-            "name": "custom_column_gap_vertical",
+            "key": "field_66b223baa549c",
+            "label": "Vertical Gap Desktop",
+            "name": "vertical_gap_desktop",
             "aria-label": "",
-            "type": "number",
+            "type": "button_group",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -889,13 +865,47 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "min": "",
-            "max": "",
-            "placeholder": "",
-            "step": "",
-            "prepend": "",
-            "append": "rem"
+            "choices": {
+                "default": "Default",
+                "none": "None",
+                "1": "sm",
+                "2": "md",
+                "3": "lg",
+                "4": "xl",
+                "5": "xxl"
+            },
+            "default_value": "default",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_66b223caa549d",
+            "label": "Vertical Gap Mobile",
+            "name": "vertical_gap_mobile",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "none": "None",
+                "1": "sm",
+                "2": "md",
+                "3": "lg",
+                "4": "xl",
+                "5": "xxl"
+            },
+            "default_value": "default",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
         },
         {
             "key": "field_64ccfc577a53c",
@@ -1509,7 +1519,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1722007708,
+    "modified": 1722956863,
     "acfe_categories": {
         "blocks": "Blocks"
     }

@@ -227,13 +227,6 @@ if( get_row_layout() == 'tabbed_content' ):
             $tab_image_styles[] = 'min-height: 400px;';
             $tab_image_classes[] = 'tab-has-min-height';
         }
-        $image_background_position = get_sub_field('image_background_position');
-        if ( $image_background_position ) {
-            $tab_image_styles[] = 'background-position: ' . $image_background_position . ' !important;';
-        } else {
-            $tab_image_styles[] = 'background-position: center center !important;';
-        }
-        $tab_image_styles = trim(implode(' ', $tab_image_styles));
 
         // tab image inner
         $tab_image_inner_classes = [];
@@ -328,6 +321,7 @@ if( get_row_layout() == 'tabbed_content' ):
         $heading_classes = trim(implode(' ', $heading_classes));
         $tab_content_inner_classes = trim(implode(' ', $tab_content_inner_classes));
         $tab_image_classes = trim(implode(' ', $tab_image_classes));
+        $tab_image_styles = trim(implode(' ', $tab_image_styles));
         $tab_image_inner_classes = trim(implode(' ', $tab_image_inner_classes));
         $tab_text_classes = trim(implode(' ', $tab_text_classes));
 

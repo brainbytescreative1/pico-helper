@@ -1,0 +1,77 @@
+/** containers **/
+.element-container {
+    position: relative;
+    max-width: 100% !important;
+}
+@media screen and (max-width: 1399px) {
+    .navbar .container,
+    #container-content-page .container {
+        max-width: 100% !important;
+    }
+}
+/* min-height */
+@media screen and (max-width: 768px) {
+    .has-min-height {
+        min-height: 400px !important;
+    }
+}
+/* normal min height */
+.min-height-view-height {
+    min-height: calc(100svh - var(--header-height));
+}
+@media screen and (min-width: 783px) {
+    .logged-in .min-height-view-height {
+        min-height: calc(100svh - var(--header-height-logged-in));
+    }
+}
+@media screen and (max-width: 782px) {
+    .logged-in .min-height-view-height {
+        min-height: calc(100svh - var(--header-height-logged-in-mobile));
+    }
+}
+/** body negative margin **/
+.body-negative-margin header {
+    top: 0;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+}
+.body-negative-margin #theme-main {
+    margin-top: var(--header-height);
+}
+.logged-in.body-negative-margin header {
+    top: 32px;
+}
+@media screen and (max-width: 782px) {
+    html:has(body.admin-bar):not(:has(.fixed-top)) {
+        margin-top: 46px !important;
+    }
+    .logged-in.body-negative-margin header {
+        top: 46px;
+    }
+}
+/* min height for rounded menu */
+.min-height-view-height-rounded {
+    min-height: 100svh;
+}
+@media screen and (min-width: 783px) {
+    .logged-in .min-height-view-height-rounded {
+        min-height: calc(100svh - 32px);
+    }
+}
+@media screen and (max-width: 782px) {
+    .logged-in .min-height-view-height-rounded {
+        min-height: calc(100svh - 8px);
+    }
+}
+/** rows **/
+
+/** columns **/
+.col-element,
+.col-inner {
+    position: relative;
+}
+.col-inner,
+.col-inner-content {
+    height: 100%;
+}

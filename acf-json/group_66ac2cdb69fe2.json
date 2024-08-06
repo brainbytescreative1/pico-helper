@@ -3,6 +3,28 @@
     "title": "Style: Layout",
     "fields": [
         {
+            "key": "field_66b24cf846321",
+            "label": "Container Max Width",
+            "name": "container_max_width",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": "",
+            "max": "",
+            "placeholder": "",
+            "step": "",
+            "prepend": "",
+            "append": "px"
+        },
+        {
             "key": "field_66ac2cdc5351a",
             "label": "Container Spacing Desktop",
             "name": "container_spacing_desktop",
@@ -55,6 +77,28 @@
             "return_format": "value",
             "allow_null": 0,
             "layout": "horizontal"
+        },
+        {
+            "key": "field_66b25604d2e92",
+            "label": "Column Gutter Width",
+            "name": "column_gutter_width",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": "",
+            "max": "",
+            "placeholder": "",
+            "step": "",
+            "prepend": "",
+            "append": "rem"
         }
     ],
     "location": [
@@ -82,7 +126,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1722560117,
+    "modified": 1722963505,
     "acfe_categories": {
         "styles": "Styles"
     }

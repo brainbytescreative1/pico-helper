@@ -119,54 +119,51 @@ if ( have_rows('columns') ) {
         $col_width_pass_inside = $col_width;
     }
 
+    // column gap
+    $vertical_gap_desktop = get_field('vertical_gap_desktop');
+    $vertical_gap_mobile = get_field('vertical_gap_mobile');
+
+    // y and mobile gutters
     $container_spacing_mobile = get_field('container_spacing_mobile', 'layout');
     if ( $container_spacing_mobile && ( $container_spacing_mobile !== 'default' ) ) {
-        $row_classes[] = 'gy-'. $mobile_breakpoint .'-0';
-        $row_classes[] = 'gy-' . $container_spacing_mobile;
+        if ( $vertical_gap_desktop && ( $vertical_gap_desktop !== 'default' ) ) {
+            if ( $vertical_gap_desktop === 'none' ) {
+                $vertical_gap_desktop = '0';
+            }
+            $row_classes[] = 'gy-'. $mobile_breakpoint .'-' . $vertical_gap_desktop;
+        } else {
+            $row_classes[] = 'gy-'. $mobile_breakpoint .'-0';
+        }
+
+        if ( $vertical_gap_mobile && ( $vertical_gap_mobile !== 'default' ) ) {
+            if ( $vertical_gap_mobile === 'none' ) {
+                $vertical_gap_mobile = '0';
+            }
+            $row_classes[] = 'gy-' . $vertical_gap_mobile;
+        } else {
+            $row_classes[] = 'gy-' . $container_spacing_mobile;
+        }
     } else {
         $row_classes[] = 'gy-lg-0';
         $row_classes[] = 'gy-1';
     }
 
-    // column gap
-    /*
-    if ( $col_width !== 'unset' ) {
-        if ( $column_gap === 'custom' ) {
-            $custom_gap = get_field('custom_gap');
-            if ( $custom_gap ) {
-                $col_styles[] = 'padding-right: calc('. $custom_gap . 'rem * .5);';
-                $col_styles[] = 'padding-left: calc('. $custom_gap . 'rem * .5);';
-            } else {
-                $row_classes[] = 'gap-default';
-            }
-            $column_gap = $custom_gap;
-        } else {
-            $row_classes[] = 'gap-' . $column_gap;
+    // x gutters
+    $horizontal_gap_desktop = get_field('horizontal_gap_desktop');
+    $horizontal_gap_mobile = get_field('horizontal_gap_mobile');
+    if ( $horizontal_gap_desktop && ( $horizontal_gap_desktop !== 'default' ) ) {
+        if ( $horizontal_gap_desktop === 'none' ) {
+            $horizontal_gap_desktop = '0';
         }
+        $row_classes[] = 'gx-'. $mobile_breakpoint .'-' . $horizontal_gap_desktop;
     }
 
-    // add default vertical margin gap on mobile
-    $column_gap_vertical = get_field('column_gap_vertical');
-    $col_bottom_spacing = '';
-    
-    if ( $col_width !== 'unset' ) {
-        if ( $column_gap_vertical === 'margin-bottom' ) {
-            $col_classes[] = 'gap-vertical-margin-bottom';
-            $row_classes[] = 'gap-vertical-margin-bottom-neg';
-        } elseif ( $column_gap_vertical === 'custom' ) {
-            $custom_column_gap_vertical = get_field('custom_column_gap_vertical');
-            if ( $custom_column_gap_vertical ) {
-                $col_styles[] = 'margin-bottom: ' . $custom_column_gap_vertical . 'rem;';
-                $row_styles[] = 'margin-bottom: -' . $custom_column_gap_vertical . 'rem;';
-            } else {
-                $row_classes[] = 'gap-vertical-custom-neg';
-            }
-            $col_classes[] = 'gap-vertical-custom';
-        } else {
-            $col_classes[] = 'gap-'. $mobile_breakpoint .'-default';
+    if ( $horizontal_gap_mobile && ( $horizontal_gap_mobile !== 'default' ) ) {
+        if ( $horizontal_gap_mobile === 'none' ) {
+            $horizontal_gap_mobile = '0';
         }
+        $row_classes[] = 'gx-' . $horizontal_gap_mobile;
     }
-    */
     
     // container classes and styling
     $min_height = get_field('min_height');

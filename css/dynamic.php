@@ -32,6 +32,17 @@ if ( $header_mobile_breakpoint ) {
     echo '--header-mobile-breakpoint: '. $header_mobile_breakpoint .';';
 }
 
+// gutters
+$column_gutter_width = get_field('column_gutter_width', 'layout');
+if ( $column_gutter_width ) { ?>
+    header .container,
+    .row > *,
+    .wp-block-group {
+        padding-right: calc(<?=$column_gutter_width?>rem * .5);
+        padding-left: calc(<?=$column_gutter_width?>rem * .5);
+    }
+<?php }
+
 echo '}'; // root end
 
 // header options
@@ -76,6 +87,19 @@ if ( $sticky_logo ) {
         echo 'max-width: ' . $logo_width . 'px';
     }
 }
+
+// containers
+$container_max_width = get_field('container_max_width', 'layout');
+if ( $container_max_width ) { ?>
+    @media (min-width: 1400px) {
+        .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+            max-width: <?=$container_max_width?>px;
+        }
+        html :where(.wp-block) {
+            max-width: <?=$container_max_width?>px;
+        }
+    }
+<?php }
 
 // colors array
 $colors = [

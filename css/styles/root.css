@@ -1,0 +1,6 @@
+:root {
+    --bs-text: var(--bs-body-color);
+}
+.bg-text {
+    background: var(--bs-text);
+}

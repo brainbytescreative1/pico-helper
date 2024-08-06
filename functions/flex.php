@@ -69,6 +69,7 @@ function get_flex_bbc( $field, $breakpoint = false ) {
 
         }
 
+        $classes = array_unique($classes);
         $classes = trim(implode(' ', $classes));
 
         return $classes;

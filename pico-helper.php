@@ -87,17 +87,18 @@ if ( ( 'picostrap5' === $theme->parent_theme ) && class_exists('acf') ) {
     }
 
     // enqueue custom stylesheet
+    add_action( 'wp_enqueue_scripts', 'bbc_stylesheet_css_js' , 100 );
     function bbc_stylesheet_css_js() {
         wp_enqueue_style( 'bbc_style', plugin_dir_url( __FILE__ ) . 'css/bbc-style.css', array(), null );
-        wp_enqueue_style( 'dynamic_styles', plugin_dir_url( __FILE__ ) . 'css/custom-styles.css' );
+        wp_enqueue_style( 'dynamic_styles', plugin_dir_url( __FILE__ ) . 'css/dynamic-style.css' );
     }
-    add_action( 'wp_enqueue_scripts', 'bbc_stylesheet_css_js' );
 
     // enqueue admin stylesheet
     add_action( 'admin_enqueue_scripts', 'load_admin_style' );
     function load_admin_style() {
         wp_enqueue_style( 'admin_style', plugin_dir_url( __FILE__ ) . 'css/bbc-admin-style.css', array(), null );
-        wp_enqueue_style( 'bbc_gutenberg_style', plugin_dir_url( __FILE__ ) . 'css/bbc-style.css', array(), null );
+        wp_enqueue_style( 'bbc_style', plugin_dir_url( __FILE__ ) . 'css/bbc-style.css', array(), null );
+        wp_enqueue_style( 'dynamic_styles', plugin_dir_url( __FILE__ ) . 'css/dynamic-style.css', array(), null );
     }
 
     // register blocks
@@ -116,7 +117,6 @@ if ( ( 'picostrap5' === $theme->parent_theme ) && class_exists('acf') ) {
     function add_code_to_body() {
         echo '<header>';
             include_once( __DIR__ . '/partials/header-navbar.php');
-            //include_once( __DIR__ . '/partials/navbar-offcanvas-bootstrap5.php');
         echo '</header>';
     }
     add_action( 'wp_body_open', 'add_code_to_body' );
@@ -144,7 +144,7 @@ if ( ( 'picostrap5' === $theme->parent_theme ) && class_exists('acf') ) {
         ob_start(); // Capture all output into buffer
         require($ss_dir . '/css/dynamic.php'); // Grab the custom-style.php file
         $css = ob_get_clean(); // Store output in a variable, then flush the buffer
-        file_put_contents($ss_dir . '/css/custom-styles.css', $css, LOCK_EX); // Save it as a css file
+        file_put_contents($ss_dir . '/css/dynamic-style.css', $css, LOCK_EX); // Save it as a css file
     }
     add_action( 'acf/save_post', 'generate_options_css', 20 ); //Parse the output and write the CSS file on post save
 

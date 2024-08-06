@@ -1,0 +1,5 @@
+/** paragraph **/
+/* remove bottom margin from last p */
+.no-margin-bottom p:last-child {
+    margin-bottom: 0;
+}

@@ -28,7 +28,7 @@ add_action( 'enqueue_block_editor_assets', 'wpfieldwork_editor_assets' );
 function mytheme_enqueue_block_editor_assets() {
 	wp_enqueue_script( 'block-filters', get_stylesheet_directory_uri() . '/js/block-filters.js', array( 'wp-hooks' ), '1.0.0', true );
 }
-add_action( 'enqueue_block_editor_assets', 'mytheme_enqueue_block_editor_assets' );
+//add_action( 'enqueue_block_editor_assets', 'mytheme_enqueue_block_editor_assets' );
 
 // add data id to all containers
 add_action( 'admin_head', 'add_data_id' );

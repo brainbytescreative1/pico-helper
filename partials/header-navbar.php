@@ -18,7 +18,9 @@
     }
 
     // top menu
-    require_once( __DIR__ . '../header-navbar-top.php');
+    //require_once( __DIR__ . '../header-navbar-top.php');
+    echo navbar_inner_top();
+    
     ?>
     
     <nav data-bs-theme="<?php echo get_theme_mod('picostrap_header_navbar_color_scheme_attr', 'light') ?>"

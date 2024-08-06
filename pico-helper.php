@@ -77,7 +77,7 @@ add_filter( 'acf/settings/save_json', 'my_acf_json_save_point' );
 /*** theme functions ***/
 
 $theme = wp_get_theme(); 
-if ( 'picostrap5' === $theme->parent_theme ) {
+if ( ( 'picostrap5' === $theme->parent_theme ) && class_exists('acf') ) {
 
     // add gutenberg styles
     add_action( 'after_setup_theme', 'pico_gutenberg_css' );
@@ -116,6 +116,7 @@ if ( 'picostrap5' === $theme->parent_theme ) {
     function add_code_to_body() {
         echo '<header>';
             include_once( __DIR__ . '/partials/header-navbar.php');
+            //include_once( __DIR__ . '/partials/navbar-offcanvas-bootstrap5.php');
         echo '</header>';
     }
     add_action( 'wp_body_open', 'add_code_to_body' );
@@ -133,7 +134,7 @@ if ( 'picostrap5' === $theme->parent_theme ) {
             dynamic_sidebar( 'footerfull' );
         echo '</footer>';
 
-        echo '<button type="button" class="btn-back-to-top d-none" id="btn-back-to-top"><i class="fas fa-chevron-up"></i></button>';
+        echo '<button type="button" class="btn-back-to-top d-none" id="btn-back-to-top"><i class="bi bi-chevron-up"></i></button>';
 
     }
     add_action( 'wp_footer', 'footer_widget' );

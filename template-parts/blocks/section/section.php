@@ -129,6 +129,7 @@ if ( have_rows('columns') ) {
     }
 
     // column gap
+    /*
     if ( $col_width !== 'unset' ) {
         if ( $column_gap === 'custom' ) {
             $custom_gap = get_field('custom_gap');
@@ -165,6 +166,8 @@ if ( have_rows('columns') ) {
             $col_classes[] = 'gap-'. $mobile_breakpoint .'-default';
         }
     }
+    */
+    
     // container classes and styling
     $min_height = get_field('min_height');
     $min_height_100vh_minus_menu_height = get_field('min_height_100vh_minus_menu_height');

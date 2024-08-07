@@ -286,28 +286,11 @@ function navbar_inner( $menu = false, $menu_background = false ) {
         }
         ?>
 
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#<?=$menu?>"
-            aria-controls="<?=$menu?>"
-            aria-expanded="false"
-            aria-label="<?php esc_attr_e( 'Open menu', 'understrap' ); ?>"
-        >
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#<?=$menu?>" aria-controls="<?=$menu?>" aria-expanded="false" aria-label="<?php esc_attr_e( 'Open menu', 'understrap' ); ?>"><span class="navbar-toggler-icon"></span></button>
 
         <div class="offcanvas offcanvas-end" tabindex="-1" id="<?=$menu?>">
 
-            <div class="offcanvas-header justify-content-end">
-                <button
-                    class="btn-close text-reset"
-                    type="button"
-                    data-bs-dismiss="offcanvas"
-                    aria-label="<?php esc_attr_e( 'Close menu', 'bbc' ); ?>"
-                ></button>
-            </div><!-- .offcancas-header -->
+            <div class="offcanvas-header justify-content-end"><button class="btn-close text-reset" type="button" data-bs-dismiss="offcanvas" aria-label="<?php esc_attr_e( 'Close menu', 'bbc' ); ?>"></button></div><!-- .offcancas-header -->
 
             <?php
             wp_nav_menu(

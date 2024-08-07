@@ -22,7 +22,7 @@ function get_advanced_bbc($field = false, $sub = true) {
         // id
         if ( $field['unique_id'] ) {
             $id = trim( $field['unique_id'] );
-            $id = $str=preg_replace('/\s+/', '', $id);
+            //$id = $str=preg_replace('/\s+/', '', $id);
         }
     }
 

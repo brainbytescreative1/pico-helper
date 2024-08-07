@@ -21,63 +21,28 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /*** acf load functions ***/
-
-if ( !class_exists('acf') ) { // if ACF Pro plugin does not currently exist
-
-    add_filter('includes/acf/settings/path', 'pico_acf_settings_path');
-    function pico_acf_settings_path( $path ) {
-        $path = plugin_dir_path( __FILE__ ) . 'includes/acf/';
-        return $path;
-    }
-
-    add_filter('includes/acf/settings/dir', 'pico_acf_settings_dir');
-    function pico_acf_settings_dir( $path ) {
-        $dir = plugin_dir_url( __FILE__ ) . 'includes/acf/';
-        return $dir;
-    }
-
-    add_filter('includes/acf/settings/show_admin', '__return_true');
-
-    include_once( plugin_dir_path( __FILE__ ) . 'includes/acf/acf.php' );
-
-    add_filter('includes/acf/settings/save_json', 'pico_acf_json_save_point');
-    function pico_acf_json_save_point( $path ) {
-        $path = plugin_dir_path( __FILE__ ) . 'acf-json/';
-        return $path;
-    }
+if ( class_exists('acf') ) {
 
     add_filter('includes/acf/settings/load_json', 'pico_acf_json_load_point');
 
-    add_filter( 'site_transient_update_plugins', 'pico_stop_acf_update_notifications', 11 );
-    function pico_stop_acf_update_notifications( $value ) {
-        unset( $value->response[ plugin_dir_path( __FILE__ ) . 'includes/acf/acf.php' ] );
-        return $value;
+    // load json
+    function my_acf_json_load_point( $paths ) {
+        unset($paths[0]);
+        $paths[] = plugin_dir_path( __FILE__ ) . '/acf-json';
+        return $paths;    
     }
+    add_filter( 'acf/settings/load_json', 'my_acf_json_load_point' );
 
-} else {
-
-    add_filter('includes/acf/settings/load_json', 'pico_acf_json_load_point');
+    // save json
+    function my_acf_json_save_point( $path ) {
+        return plugin_dir_path( __FILE__ ) . 'acf-json';
+    }
+    add_filter( 'acf/settings/save_json', 'my_acf_json_save_point' );
 
 }
-
-// load json
-function my_acf_json_load_point( $paths ) {
-    unset($paths[0]);
-    $paths[] = plugin_dir_path( __FILE__ ) . '/acf-json';
-    return $paths;    
-}
-add_filter( 'acf/settings/load_json', 'my_acf_json_load_point' );
-
-// save json
-function my_acf_json_save_point( $path ) {
-    return plugin_dir_path( __FILE__ ) . 'acf-json';
-}
-add_filter( 'acf/settings/save_json', 'my_acf_json_save_point' );
 
 /*** theme functions ***/
-
-$theme = wp_get_theme(); 
-if ( ( 'picostrap5' === $theme->parent_theme ) && class_exists('acf') ) {
+if ( ( 'picostrap5' === wp_get_theme()->parent_theme ) && class_exists('acf') ) {
 
     // add gutenberg styles
     add_action( 'after_setup_theme', 'pico_gutenberg_css' );
@@ -107,10 +72,10 @@ if ( ( 'picostrap5' === $theme->parent_theme ) && class_exists('acf') ) {
         register_block_type( __DIR__ . '/template-parts/blocks/section' );
     }
 
-    // hide default footer
+    // hide default pico footer
     add_filter('picostrap_enable_footer_elements', '__return_false');
 
-    // hide default header
+    // hide default pico header
     add_filter('picostrap_enable_header_elements', '__return_false');
 
     // add header from plugin
@@ -120,12 +85,6 @@ if ( ( 'picostrap5' === $theme->parent_theme ) && class_exists('acf') ) {
         echo '</header>';
     }
     add_action( 'wp_body_open', 'add_code_to_body' );
-
-    // font awesome
-    //add_action('wp_head', 'add_font_awesome');
-    function add_font_awesome(){ ?>
-        <script src="https://kit.fontawesome.com/ec15ef7364.js" crossorigin="anonymous"></script>
-    <?php };
 
     // add footer functions
     function footer_widget() {
@@ -170,8 +129,7 @@ if ( ( 'picostrap5' === $theme->parent_theme ) && class_exists('acf') ) {
     function override_page_templates( $template ) {
         if ( is_page() ) {
             $template = plugin_dir_path(__FILE__) . 'page-templates/page.php';
-        }
-        elseif ( is_single() ) {
+        } elseif ( is_single() ) {
             $template = plugin_dir_path(__FILE__) . 'page-templates/single.php';
         }
         return $template;
@@ -205,40 +163,43 @@ if ( ( 'picostrap5' === $theme->parent_theme ) && class_exists('acf') ) {
         return $inline_exclusions_list;
     } );
 
-    function initialize_functions(){
+    function bbc_include_files(){
 
-        // dynamic stylesheet
-        include_once( __DIR__ . '/css/root.php');
+        $include_files = Array(
+            '/css/admin-root.php',
+            '/functions/blocks.php',
+            '/functions/menus.php',
+            '/functions/options-pages.php',
+            '/functions/post-types.php',
+            '/functions/shortcodes.php',
+            '/functions/advanced.php',
+            '/functions/background.php',
+            '/functions/borders.php',
+            '/functions/buttons.php',
+            '/functions/colors.php',
+            '/functions/dividers.php',
+            '/functions/flex.php',
+            '/functions/forms.php',
+            '/functions/heading.php',
+            '/functions/images.php',
+            '/functions/integrations.php',
+            '/functions/js.php',
+            '/functions/page-width.php',
+            '/functions/responsive.php',
+            '/functions/spacing.php',
+            '/functions/text-styles.php',
+            '/functions/misc.php'
+        );
 
-        // include separate functions files
-        include_once( __DIR__ . '/functions/blocks.php');
-        include_once( __DIR__ . '/functions/menus.php');
-        include_once( __DIR__ . '/functions/options-pages.php');
-        include_once( __DIR__ . '/functions/post-types.php');
-        include_once( __DIR__ . '/functions/shortcodes.php');
-
-        // global functions
-        include_once( __DIR__ . '/functions/advanced.php');
-        include_once( __DIR__ . '/functions/background.php');
-        include_once( __DIR__ . '/functions/borders.php');
-        include_once( __DIR__ . '/functions/buttons.php');
-        include_once( __DIR__ . '/functions/colors.php');
-        include_once( __DIR__ . '/functions/dividers.php');
-        include_once( __DIR__ . '/functions/flex.php');
-        include_once( __DIR__ . '/functions/heading.php');
-        include_once( __DIR__ . '/functions/images.php');
-        include_once( __DIR__ . '/functions/js.php');
-        include_once( __DIR__ . '/functions/page-width.php');
-        include_once( __DIR__ . '/functions/responsive.php');
-        include_once( __DIR__ . '/functions/spacing.php');
-        include_once( __DIR__ . '/functions/text-styles.php');
-        include_once( __DIR__ . '/functions/misc.php');
-
-        if ( class_exists( 'GFCommon' ) ) {
-            include_once( __DIR__ . '/functions/forms.php');
+        if ( $include_files ) {
+            foreach ($include_files as $file) {
+                if(file_exists(__DIR__ . $file)) {
+                    include_once(__DIR__ . $file);
+                }
+            }
         }
 
     }
-    add_action( 'init', 'initialize_functions', 10 );
+    add_action( 'init', 'bbc_include_files', 10 );
 
 }

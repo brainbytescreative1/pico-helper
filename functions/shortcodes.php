@@ -1,83 +1,60 @@
 <?php
 
-function top_bar_shortcode() {
-    echo 'top bar';
-}
-//add_shortcode( 'top_bar', 'top_bar_shortcode' );
-
-function table_of_contents_shortcode() {
-    
-    // start content
+/*
+function sample_shortcode() {
 	ob_start();
-    
-    if ( is_active_sidebar( 'right-sidebar' ) ) {
+    return ob_get_clean();
+}
+add_shortcode( 'sample', 'sample_shortcode' );
+*/
 
-        echo '<div class="container-fluid px-0">';
-            echo '<div class="row">';
-                echo '<div class="col-12">';
+function bbc_site_name_shortcode() {
+    return get_bloginfo('name');
+}
+add_shortcode( 'bbc_site_name', 'bbc_site_name_shortcode' );
 
-                    $sidebar_content = get_field('sidebar_content');
-                    if ( $sidebar_content == "Table of Contents" ) {
-                        $toc = get_field('table_of_contents');
-                        if ( $toc ) {
-                            ?>
-                            <div class="element toc" id="toc">
-                                <?=$toc?>
-                            </div>
+function bbc_get_year_shortcode() {
+    return date('Y');
+}
+add_shortcode( 'bbc_get_year', 'bbc_get_year_shortcode' );
 
-                            <?php
-                            $sticky_sidebar = get_field('sticky_sidebar');
-                            if ( $sticky_sidebar === 'enable' ) { 
-                                $sticky_position = get_field('sticky_position'); ?>
+function bbc_global_email_shortcode($atts) {
 
-                                <script>
-                                // When the user scrolls the page, execute myFunction
-                                window.addEventListener('scroll', stickyTOC);
+    $default = array(
+        'link' => false,
+    );
 
-                                // Get the navbar
-                                var toc = document.getElementById("right-sidebar");
+    $link = shortcode_atts($default, $atts);
 
-                                // Get the offset position of the navbar
-                                var sticky = toc.offsetTop;
-                                var sticky = ( sticky + <?=$sticky_position?> );
-
-                                // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-                                function stickyTOC() {
-                                    if (window.pageYOffset >= sticky) {
-                                        toc.classList.add("sticky-toc")
-                                    } else {
-                                        toc.classList.remove("sticky-toc");
-                                    }
-                                }
-                                </script>
-
-                                <script>
-                                    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                                        anchor.addEventListener('click', function (e) {
-                                            e.preventDefault();
-
-                                            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                                                behavior: 'smooth'
-                                            });
-                                        });
-                                    });
-                                </script>
-
-                            <?php }
-                        }
-                    }
-                echo '</div>';
-            echo '</div>';
-        echo '</div>';
+    $global_email = get_field('global_email', 'integrations');
+    if ( $global_email ) {
+        if ( $link['link'] === 'true' ) {
+            return '<a href="mailto:' . $global_email . '">' . $global_email . '</a>';
+        } else {
+            return $global_email;
+        }
     }
 
-    ?>
-    
-    <?php
+}
+add_shortcode( 'bbc_global_email', 'bbc_global_email_shortcode' );
 
-    // return content
-	$content = ob_get_clean();
-    return $content;
+function bbc_global_phone_shortcode($atts) {
+
+    $default = array(
+        'link' => false,
+    );
+
+    $link = shortcode_atts($default, $atts);
+
+    $global_phone = get_field('global_phone', 'integrations');
+    if ( $global_phone ) {
+        if ( $link['link'] === 'true' ) {
+            $global_phone_clean = preg_replace('/[^a-z\d]/i', '', $global_phone);
+            return '<a href="tel:+1' . $global_phone_clean . '">' . $global_phone . '</a>';
+        } else {
+            return $global_phone;
+        }
+    }
 
 }
-add_shortcode( 'table_of_contents', 'table_of_contents_shortcode' );
+add_shortcode( 'bbc_global_phone', 'bbc_global_phone_shortcode' );

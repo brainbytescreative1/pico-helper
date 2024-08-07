@@ -144,6 +144,7 @@ if ( class_exists( 'GFCommon' ) ) {
         if ( strpos( $text, $merge_tag ) === false || empty( $form ) ) {
             return $text;
         }
+
         $global_phone = get_field('global_phone', 'integrations');
         if ( $global_phone ) {
             return str_replace( $merge_tag, $global_phone, $text );
@@ -157,11 +158,11 @@ if ( class_exists( 'GFCommon' ) ) {
     function bbc_get_privacy_consent() {
         $privacy = get_privacy_policy_url();
         if ( $privacy ) {
-            return 'I have read and accept the <a href="'. $privacy .'" target="_blank">Privacy Policy</a>.';
+            return '<div>I have read and accept the <a href="'. $privacy .'" target="_blank">Privacy Policy</a>.</div>';
         } else {
-            return 'I have read and accept the <a href="/privacy-hipaa/" target="_blank">Privacy Policy</a>.';
+            return '<div>I have read and accept the <a href="/privacy-hipaa/" target="_blank">Privacy Policy</a>.</div>';
         }
     }
-    add_shortcode( 'privacy_consent', 'bbc_get_privacy_consent' );
+    //add_shortcode( 'privacy_consent', 'bbc_get_privacy_consent' );
 
 }

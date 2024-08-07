@@ -16,6 +16,9 @@ if( get_row_layout() == 'image' ):
             $classes[] = 'img';
             $classes[] = 'element';
 
+            $image_classes = [];
+            $image_styles = [];
+
             $link_wrapper_tag = 'div';
             $image_link = get_sub_field('image_link');
 
@@ -62,7 +65,7 @@ if( get_row_layout() == 'image' ):
 
                 $link_wrapper_tag = 'a '. $target .' href="'. $url .'"';
 
-                $styles[] = 'max-width: ' . $size_max_width;
+                //$styles[] = 'max-width: ' . $size_max_width;
 
             }
 
@@ -87,8 +90,10 @@ if( get_row_layout() == 'image' ):
                 $classes[] = 'rounded';
                 if ( $border_radius === 'default' ) {
                     $classes[] = 'rounded-3';
+                    $classes[] = 'overflow-hidden';
                 } else {
                     $classes[] = 'rounded-' . $border_radius;
+                    $classes[] = 'overflow-hidden';
                 }
                 
             }
@@ -113,23 +118,18 @@ if( get_row_layout() == 'image' ):
                 $classes[] = 'force-full-width-mobile';
             }
 
-            $max_width = get_sub_field('max_width');
-            if ( $max_width && ( $max_width['value'] ) ) {
-                $size_max_width = $max_width['value'] . $max_width['unit'];
-            }
-
-            $max_height = get_sub_field('max_height');
-            if ( $max_height && ( $max_height['value'] ) ) {
-                $styles[] = 'max-height: ' . $max_height['value'] . $max_height['unit'] . ';';
-                $classes[] = 'image-max-height';
-            }
-
             if ( function_exists('get_spacing_bbc') ) {
                 $classes[] = get_spacing_bbc(get_sub_field('image_spacing'));
             }
             
             if ( function_exists('get_responsive_bbc') ) {
                 $classes[] = get_responsive_bbc('responsive');
+            }
+
+            if ( function_exists('get_sizing_bbc') ) {
+                $sizing = get_sizing_bbc(get_sub_field('sizing'));
+                $image_classes[] = $sizing['classes'];
+                $image_styles[] = $sizing['styles'];
             }
 
             $additional_classes = get_sub_field('additional_classes');
@@ -139,17 +139,20 @@ if( get_row_layout() == 'image' ):
             
             // add max width to wrapper
             $image_attributes = wp_get_attachment_image_src( $image, 'full' );
-            $image_src_max_width = $image_attributes[1];
-            if ( $image_src_max_width ) {
-                $styles[] = 'max-width: ' . $image_src_max_width . 'px;';
+
+            if ( $image_attributes && $image_attributes[1] ) {
+                $styles[] = 'max-width: ' . $image_attributes[1] . 'px;';
             }
 
             $classes = trim(implode(' ', $classes));
             $styles = trim(implode(' ', $styles));
 
-            echo '<'.$link_wrapper_tag.' class="'. $classes .'" style="'. $styles .'">';
+            $image_classes = trim(implode(' ', $image_classes));
+            $image_styles = trim(implode(' ', $image_styles));
+
+            echo '<'.$link_wrapper_tag.' class="'. $classes . '" style="'. $styles .'">';
                 if ( function_exists('get_responsive_image_bbc') ) { 
-                    echo get_responsive_image_bbc($image, $size, $size_max_width, $image_alt );
+                    echo get_responsive_image_bbc($image, $size, $size_max_width, $image_alt, $image_classes, $image_styles);
                 }
             echo '</'.$link_wrapper_tag.'>';
     

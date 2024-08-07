@@ -33,6 +33,30 @@ function bbc_gtm_body() {
     <?php }
 }
 
+// userway
+add_action('wp_head', 'bbc_add_userway');
+function bbc_add_userway(){ 
+    $add_userway = get_field('add_userway', 'integrations');
+    $userway_color = get_field('userway_color', 'integrations');
+    if ( !$userway_color ) {
+        $userway_color = '#FD24CC';
+    }
+    if ( $add_userway === 'enqueue' ) { ?>
+
+        <script>
+        (function(d){
+        var s = d.createElement("script");
+        s.setAttribute("data-color", "<?=$userway_color?>");
+        s.setAttribute("data-account", "20ms6oN9h5");
+        s.setAttribute("src", "https://cdn.userway.org/widget.js");
+        (d.body || d.head).appendChild(s);
+        })(document)
+        </script>
+        <noscript>Please ensure Javascript is enabled for purposes of <a href="https://userway.org">website accessibility</a></noscript>
+         
+    <?php }
+}
+
 // font awesome
 add_action('wp_head', 'add_font_awesome');
 function add_font_awesome(){ 

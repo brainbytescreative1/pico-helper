@@ -25,6 +25,18 @@ if ( ! function_exists( 'custom_widgets_init' ) ) {
             'after_title'   => '</h3>',
         )
     );
+
+    register_sidebar(
+        array(
+            'name'          => __( 'Footer Full', 'bbc' ),
+				'id'            => 'footerfull',
+				'description'   => __( 'Full sized footer widget with dynamic grid', 'bbc' ),
+				'before_widget' => '<div id="%1$s" class="footer-widget %2$s dynamic-classes">',
+				'after_widget'  => '</div><!-- .footer-widget -->',
+				'before_title'  => '<h3 class="widget-title">',
+				'after_title'   => '</h3>',
+        )
+    );
     
     register_sidebar(
         array(
@@ -37,6 +49,19 @@ if ( ! function_exists( 'custom_widgets_init' ) ) {
             'after_title'   => '</h3>',
         )
     );
+
+    register_sidebar(
+        array(
+            'name'          => __( 'Main Sidebar', 'bbc' ),
+            'id'            => 'main-sidebar',
+            'description'   => __( 'Main sidebar widget area', 'bbc' ),
+            'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</aside>',
+            'before_title'  => '<h3 class="widget-title">',
+            'after_title'   => '</h3>',
+        )
+    );
+    unregister_sidebar( 'main-sidebar' );
 
 }
 
@@ -360,7 +385,7 @@ function navbar_inner_top() {
     ob_start();
     // top menu options
     $top_menu_select = get_field('top_menu_select', 'header');
-    if ( get_field('top_menu_select', 'header') ) {
+    if ( $top_menu_select ) {
 
         $classes = [];
         $styles = [];
@@ -425,18 +450,16 @@ function navbar_inner_top() {
         echo '<div class="'. $classes .'" style="'. $styles .'">';
         if ( $top_menu_select === 'menu' ) {
             echo '<div class="'. get_field('header_width', 'header') .'">';
-                echo '<div class="row">';
-                    wp_nav_menu(
-                        array(
-                            'theme_location' => 'secondary',
-                            'container' => false,
-                            'menu_class' => '',
-                            'fallback_cb' => '__return_false',
-                            'items_wrap' => '<ul id="%1$s" class="navbar-top mb-0 '. $top_menu_align .' '. $top_menu_align_mobile .' %2$s">%3$s</ul>',
-                            'walker' => new bootstrap_5_wp_nav_menu_walker()
-                        )
-                    );
-                echo '</div>';
+                wp_nav_menu(
+                    array(
+                        'theme_location' => 'secondary',
+                        'container' => false,
+                        'menu_class' => '',
+                        'fallback_cb' => '__return_false',
+                        'items_wrap' => '<ul id="%1$s" class="navbar-top mb-0 '. $top_menu_align .' '. $top_menu_align_mobile .' %2$s">%3$s</ul>',
+                        'walker' => new bootstrap_5_wp_nav_menu_walker()
+                    )
+                );
             echo '</div>';
         } elseif ( $top_menu_select === 'widget' ) {
             dynamic_sidebar( 'topmenu' );
@@ -445,4 +468,53 @@ function navbar_inner_top() {
 
     }
     return ob_get_clean();
+}
+
+function get_navbar_wrapper() {
+    ob_start();
+    ?>
+
+        <!-- ******************* The Navbar Area ******************* -->
+        <div id="wrapper-navbar" itemscope itemtype="http://schema.org/WebSite">
+
+        <a class="skip-link visually-hidden-focusable" href="#theme-main">
+            <?php esc_html_e('Skip to content', 'picostrap5'); ?>
+        </a>
+
+        <?php
+        // header options
+        $navbar_bg = null;
+        if ( function_exists('if_array_value') ) { 
+            $options_bg = if_array_value( get_field('main_menu_background', 'header'), 'theme_colors');
+        };
+        if ( $options_bg ) {
+            $navbar_bg = 'bg-' . $options_bg;
+        } else {
+            $navbar_bg = get_theme_mod('picostrap_header_navbar_color_choice', 'bg-white');
+        }
+
+        // top menu
+        echo navbar_inner_top();
+
+        ?>
+
+        <nav data-bs-theme="<?php echo get_theme_mod('picostrap_header_navbar_color_scheme_attr', 'light') ?>"
+            class="navbar <?php echo get_theme_mod('picostrap_header_navbar_expand', 'navbar-expand-lg'); ?> <?php echo $navbar_bg; ?>"
+            aria-label="Main Navigation" id="navbar-main">
+            
+            <?php echo navbar_inner('navbarNavOffcanvas'); ?>
+
+        </nav> <!-- .site-navigation -->
+
+        <nav data-bs-theme="<?php echo get_theme_mod('picostrap_header_navbar_color_scheme_attr', 'light') ?>"
+            class="navbar d-none <?php echo get_theme_mod('picostrap_header_navbar_expand', 'navbar-expand-lg'); ?> <?php echo $navbar_bg; ?>"
+            aria-label="Sticky Navigation" id="navbar-sticky">
+
+            <?php echo navbar_inner('navbarNavOffcanvasSticky'); ?>
+
+        </nav> <!-- .site-navigation -->
+
+        </div><!-- #wrapper-navbar end -->
+    
+    <?php return ob_get_clean();
 }

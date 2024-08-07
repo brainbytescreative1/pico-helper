@@ -36,14 +36,16 @@ function get_spacing_bbc( $field, $field_type = false, $classes = false ) {
         // spacing all
         if ( $padding_all && ( $padding_all !== 'default' ) ) {
             if ( $padding_all === 'none' ) {
-                $padding_all = '0';
+                $classes[] = 'p-0';
             }
+            /*
             $classes[] = 'px-lg-' . $padding_all;
             $classes[] = 'px-' . $padding_all;
             $classes[] = 'py-lg-' . $padding_all;
             $classes[] = 'py-' . $padding_all;
             $classes[] = 'p-lg-' . $padding_all;
             $classes[] = 'p-' . $padding_all;
+            */
         }
 
         $margin_all = $field['margin_all'];

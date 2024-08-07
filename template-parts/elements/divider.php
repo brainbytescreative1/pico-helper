@@ -64,7 +64,9 @@ if( get_row_layout() == 'divider' ):
         
         ?>
 
-        <p class="<?=esc_attr($divider_classes)?>" style="<?=esc_attr($divider_styles)?>"></p>
+        <div class="divider-wrapper">
+            <p class="<?=esc_attr($divider_classes)?>" style="<?=esc_attr($divider_styles)?>"></p>
+        </div>
 
     <?php }
 

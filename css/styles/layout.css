@@ -1,7 +1,6 @@
 /** containers **/
 .element-container {
     position: relative;
-    max-width: 100% !important;
 }
 @media screen and (max-width: 1399px) {
     .navbar .container,
@@ -74,4 +73,12 @@
 .col-inner,
 .col-inner-content {
     height: 100%;
+}
+
+/** padding & margin **/
+.p-0 {
+    padding: 0 !important;
+}
+.m-0 {
+    margin: 0 !important;
 }

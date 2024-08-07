@@ -20,6 +20,16 @@
     padding-left: calc(var(--bs-gutter-x) / 2) !important;
     padding-right: calc(var(--bs-gutter-x) / 2) !important;
 }
+.edit-widgets-block-editor .block-editor-block-list__block,
+.edit-widgets-block-editor .block-editor-block-list__block * {
+    max-width: 1600px;
+}
+/* acfe */
+.acfe-modal {
+    max-width: calc(100% - 600px);
+    margin-left: auto;
+    margin-right: auto;
+}
 /** colors **/
 .site-colors-field input[type=radio] {
     box-shadow: none;

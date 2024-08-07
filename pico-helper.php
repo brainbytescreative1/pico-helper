@@ -80,18 +80,26 @@ if ( ( 'picostrap5' === wp_get_theme()->parent_theme ) && class_exists('acf') ) 
 
     // add header from plugin
     function add_code_to_body() {
-        echo '<header>';
-            include_once( __DIR__ . '/partials/header-navbar.php');
-        echo '</header>';
+        $template = get_page_template_slug();
+        if ( ( $template !== 'page-templates/blank.php' ) && ( $template !== 'page-templates/blank-nofooter.php' ) && ( $template !== 'page-templates/empty.php' ) ) {
+            echo '<header id="theme-header">';
+                echo get_navbar_wrapper();
+            echo '</header>';
+        }
     }
     add_action( 'wp_body_open', 'add_code_to_body' );
 
     // add footer functions
     function footer_widget() {
 
-        echo '<footer>';
-            dynamic_sidebar( 'footerfull' );
-        echo '</footer>';
+        $template = get_page_template_slug();
+        if ( ( $template !== 'page-templates/blank.php' ) && ( $template !== 'page-templates/blank-nofooter.php' ) && ( $template !== 'page-templates/empty.php' ) ) {
+            echo '<footer id="theme-footer">';
+                dynamic_sidebar( 'reviews' );
+                dynamic_sidebar( 'footerfull' );
+                dynamic_sidebar( 'topmenu' );
+            echo '</footer>';
+        }
 
         echo '<button type="button" class="btn-back-to-top d-none" id="btn-back-to-top"><i class="bi bi-chevron-up"></i></button>';
 

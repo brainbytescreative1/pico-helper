@@ -3,3 +3,50 @@
 .no-margin-bottom p:last-child {
     margin-bottom: 0;
 }
+/** icon lists **/
+.icon-list a {
+    text-decoration: none;
+}
+/** images **/
+/*
+.img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}
+picture {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}
+*/
+.img,
+.img picture {
+    display: block;
+}
+@media screen and (min-width: 992px) {
+    .img.force-full-width,
+    .img.force-full-width * {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+}
+@media screen and (min-width: 769px) and (max-width: 991px) {
+    .img.force-full-width-tablet,
+    .img.force-full-width-tablet * {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+}
+@media screen and (max-width: 768px) {
+    .img.force-full-width-mobile,
+    .img.force-full-width-mobile * {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+}
+/** dividers **/
+.divider-wrapper {
+    display: block;
+    width: 100%;
+}

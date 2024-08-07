@@ -18,7 +18,7 @@ add_shortcode( 'bbc_site_name', 'bbc_site_name_shortcode' );
 function bbc_get_year_shortcode() {
     return date('Y');
 }
-add_shortcode( 'bbc_get_year', 'bbc_get_year_shortcode' );
+add_shortcode( 'year', 'bbc_get_year_shortcode' );
 
 // global email
 function bbc_global_email_shortcode($atts) {

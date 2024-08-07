@@ -23,6 +23,30 @@ if ( class_exists( 'GFCommon' ) ) {
 
     }
 
+    // acf populate forms
+    add_filter('acf/load_field/name=form', function($field) {
+        
+        $forms = [];
+        $forms_list = GFAPI::get_forms();
+        foreach ($forms_list as $form) {
+            $id = $form['id'];
+            $title = $form['title'];
+            $forms[] = [ $form['id'], $form['title'] ];
+        }
+
+        $choices = [];
+
+        // if enabled and exist
+        foreach ($forms as $form) {
+            $choices += array( $form[0] => __(ucfirst($form[1]), 'bbc') );
+        } 
+        
+        $field['choices'] = $choices;
+        $field['default_value'] = null;
+        return $field;
+
+    });
+
     // add custom merge tags
     add_action( 'gform_admin_pre_render', 'add_merge_tags' );
     function add_merge_tags($form) { ?>    
@@ -126,32 +150,18 @@ if ( class_exists( 'GFCommon' ) ) {
         } else {
             return '';
         }
-        
 
     }
 
-    // populate forms
-    add_filter('acf/load_field/name=form', function($field) {
-        
-        $forms = [];
-        $forms_list = GFAPI::get_forms();
-        foreach ($forms_list as $form) {
-            $id = $form['id'];
-            $title = $form['title'];
-            $forms[] = [ $form['id'], $form['title'] ];
+    // get privacy page for consent field
+    function bbc_get_privacy_consent() {
+        $privacy = get_privacy_policy_url();
+        if ( $privacy ) {
+            return 'I have read and accept the <a href="'. $privacy .'" target="_blank">Privacy Policy</a>.';
+        } else {
+            return 'I have read and accept the <a href="/privacy-hipaa/" target="_blank">Privacy Policy</a>.';
         }
-
-        $choices = [];
-
-        // if enabled and exist
-        foreach ($forms as $form) {
-            $choices += array( $form[0] => __(ucfirst($form[1]), 'bbc') );
-        } 
-        
-        $field['choices'] = $choices;
-        $field['default_value'] = null;
-        return $field;
-
-    });
+    }
+    add_shortcode( 'privacy_consent', 'bbc_get_privacy_consent' );
 
 }

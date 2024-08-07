@@ -8,16 +8,19 @@ function sample_shortcode() {
 add_shortcode( 'sample', 'sample_shortcode' );
 */
 
+// site name
 function bbc_site_name_shortcode() {
     return get_bloginfo('name');
 }
 add_shortcode( 'bbc_site_name', 'bbc_site_name_shortcode' );
 
+// get year
 function bbc_get_year_shortcode() {
     return date('Y');
 }
 add_shortcode( 'bbc_get_year', 'bbc_get_year_shortcode' );
 
+// global email
 function bbc_global_email_shortcode($atts) {
 
     $default = array(
@@ -38,6 +41,7 @@ function bbc_global_email_shortcode($atts) {
 }
 add_shortcode( 'bbc_global_email', 'bbc_global_email_shortcode' );
 
+// global phone
 function bbc_global_phone_shortcode($atts) {
 
     $default = array(

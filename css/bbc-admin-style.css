@@ -13,9 +13,11 @@
 .editor-styles-wrapper .bg-image-container #secondary img {
     height: 100% !important;
 }
+/*
 .block-editor-block-list__block {
     max-width: 1428px;
 }
+*/
 .editor-styles-wrapper .element-container {
     padding-left: calc(var(--bs-gutter-x) / 2) !important;
     padding-right: calc(var(--bs-gutter-x) / 2) !important;

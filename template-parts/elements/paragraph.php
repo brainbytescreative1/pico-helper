@@ -25,6 +25,16 @@ if( get_row_layout() == 'paragraph' ):
             $classes[] = get_spacing_bbc(get_sub_field('paragraph_spacing'));
         }
 
+        $sizing = get_sub_field('sizing');
+        
+        if ( function_exists('get_sizing_bbc') ) {
+            $sizing = get_sizing_bbc(get_sub_field('sizing'));
+            //print_r($sizing);
+            $classes[] = $sizing['classes'];
+        }
+
+        
+
         $additional_classes = get_sub_field('additional_classes');
         if ( $additional_classes ) {
             $classes[] = $additional_classes;

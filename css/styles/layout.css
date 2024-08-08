@@ -3,8 +3,8 @@
     position: relative;
 }
 @media screen and (max-width: 1399px) {
-    .navbar .container,
-    #container-content-page .container {
+    .container,
+    .container-fluid {
         max-width: 100% !important;
     }
 }

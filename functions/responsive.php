@@ -29,23 +29,23 @@ function get_responsive_bbc($field = false, $sub = true) {
 
 }
 
-function get_sizing_bbc($field) {
+function get_sizing_bbc($field = false) {
 
     if ( $field ) {
         // initialize
         $classes = [];
         $styles = [];
 
-        $width_percent = $field['width_percent'];
-        $width_px = $field['width_px'];
+        $width_percent = if_array_value($field, 'width_percent');
+        $width_px = if_array_value($field, 'width_px');
         /*
         $height_pecent = $field['height_pecent'];
         $height_px = $field['height_px'];
         */
 
-        $max_width = $field['max_width'];
-        $alignment = $field['alignment'];
-        $breakpoint = $field['breakpoint'];
+        $max_width = if_array_value($field, 'max_width');
+        $alignment = if_array_value($field, 'alignment');
+        $breakpoint = if_array_value($field, 'breakpoint');
 
         if ( $breakpoint ) {
             $breakpoint = $breakpoint . '-';
@@ -59,13 +59,13 @@ function get_sizing_bbc($field) {
             };
         }
 
-        if ( $max_width && ( $max_width !== 'default' ) ) {
+        if ( $max_width !== 'default' ) {
             $classes[] = 'mw-' . $breakpoint . $max_width;
         }
 
         if ( $width_px ) {
             $styles[] = 'width: ' . $width_px . 'px;';
-        } elseif ( $width_percent && ( $width_percent !== 'default' ) ) {
+        } elseif ( $width_percent !== 'default' ) {
             $classes[] = 'w-' . $width_percent;
         }
 

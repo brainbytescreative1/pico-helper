@@ -62,8 +62,8 @@ if ( ( 'picostrap5' === wp_get_theme()->parent_theme ) && class_exists('acf') ) 
     add_action( 'admin_enqueue_scripts', 'load_admin_style' );
     function load_admin_style() {
         wp_enqueue_style( 'admin_style', plugin_dir_url( __FILE__ ) . 'css/bbc-admin-style.css', array(), null );
-        wp_enqueue_style( 'bbc_style', plugin_dir_url( __FILE__ ) . 'css/bbc-style.css', array(), null );
-        wp_enqueue_style( 'dynamic_styles', plugin_dir_url( __FILE__ ) . 'css/dynamic-style.css', array(), null );
+        wp_enqueue_style( 'bbc_admin_style', plugin_dir_url( __FILE__ ) . 'css/bbc-style.css', array(), null );
+        wp_enqueue_style( 'admin_dynamic_styles', plugin_dir_url( __FILE__ ) . 'css/dynamic-style.css', array(), null );
     }
 
     // register blocks

@@ -1,6 +1,6 @@
 {
     "key": "group_66b3c794dac96",
-    "title": "Sizing",
+    "title": "Element Sizing",
     "fields": [
         {
             "key": "field_66b3cce04af35",
@@ -31,15 +31,15 @@
                 "11": "11",
                 "none": "none"
             },
-            "default_value": false,
+            "default_value": "default",
             "return_format": "value",
             "multiple": 0,
-            "allow_custom": 1,
-            "placeholder": "Select Max Width",
+            "allow_custom": 0,
             "search_placeholder": "Select Max Width",
-            "allow_null": 1,
+            "allow_null": 0,
             "ui": 1,
-            "ajax": 0
+            "ajax": 0,
+            "placeholder": ""
         },
         {
             "key": "field_66b3d0de38dac",
@@ -56,7 +56,6 @@
                 "id": ""
             },
             "choices": {
-                "none": "none",
                 "start": "start",
                 "center": "center",
                 "end": "end"
@@ -87,7 +86,7 @@
                 "xl": "xl",
                 "xxl": "xxl"
             },
-            "default_value": "lg",
+            "default_value": "",
             "return_format": "value",
             "allow_null": 1,
             "layout": "horizontal"
@@ -187,7 +186,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1723067868,
+    "modified": 1723125328,
     "acfe_categories": {
         "global-functions": "Global Functions"
     }

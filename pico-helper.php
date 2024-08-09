@@ -15,6 +15,7 @@
  * Author URI:    https://www.brainbytescreative.com/
  * Text Domain:   bbc-landing-pages
  * Domain Path:   /languages
+ * GitHub Plugin URI: https://github.com/brainbytescreative1/pico-helper
  */
 
 // Exit if accessed directly.

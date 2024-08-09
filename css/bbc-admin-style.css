@@ -1,5 +1,11 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
+html:has(.fixed-top) #wpadminbar {
+    position: fixed;
+    top: 0 !important;
+    bottom: auto !important;
+}
+
 /** gutenberg **/
 .editor-post-title {
     font-size: 40px !important;
@@ -13,18 +19,12 @@
 .editor-styles-wrapper .bg-image-container #secondary img {
     height: 100% !important;
 }
-/*
-.block-editor-block-list__block {
-    max-width: 1428px;
-}
-*/
 .editor-styles-wrapper .element-container {
     padding-left: calc(var(--bs-gutter-x) / 2) !important;
     padding-right: calc(var(--bs-gutter-x) / 2) !important;
 }
-.edit-widgets-block-editor .block-editor-block-list__block,
-.edit-widgets-block-editor .block-editor-block-list__block * {
-    max-width: 1600px;
+.wp-block-acf-section {
+    max-width: 100% !important;
 }
 /* acfe */
 .acfe-modal {
@@ -152,14 +152,4 @@
 }
 .button-color-select input[value="white"] {
     background: var(--bs-white);
-}
-
-/** acf **/
-.hide-clone-title [data-name="theme_colors"] .acf-label {
-    display: none !important;
-}
-
-/** icon picker **/
-.acf-svg-icon-picker__popup-holder {
-    z-index: 100001 !important;
 }

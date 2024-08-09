@@ -2,50 +2,28 @@
 <style>
 <?php
 echo ':root {'; // root start
-// header root
-$header_height = get_field('header_height', 'header');
-if ( $header_height ) {
-    echo '--header-height: ' . $header_height . 'px;';
-    echo '--header-height-neg: -' . $header_height . 'px;';
-} else {
-    echo '--header-height: 0px;';
-}
-if ( $header_height && is_user_logged_in() ) {
-    $header_height_desktop = $header_height + 32;
-    echo '--header-height-logged-in: ' . $header_height_desktop . 'px;';
-    $header_height_mobile = $header_height + 46;
-    echo '--header-height-logged-in-mobile: ' . $header_height_mobile . 'px;';
-} else {
-    echo '--header-height-logged-in: 32px;';
-    echo '--header-height-logged-in-mobile: 46px;';
-}
 
-$header_mobile_breakpoint = get_theme_mod('picostrap_header_navbar_expand' );
-if ( $header_mobile_breakpoint ) {
-    switch ($header_mobile_breakpoint) {
-        case 'navbar-expand-sm':
-            $header_mobile_breakpoint = '576px';
-            break;
-        case 'navbar-expand-md':
-            $header_mobile_breakpoint = '768px';
-            break;
-        case 'navbar-expand-lg':
-            $header_mobile_breakpoint = '992px';
-            break;
-        case 'navbar-expand-xl':
-            $header_mobile_breakpoint = '1200px';
-            break;
-        case 'navbar-expand-xxl':
-            $header_mobile_breakpoint = '1468px';
-            break;
-        default:
-            $header_mobile_breakpoint = '';
+    // header root
+    $header_height = get_field('header_height', 'header');
+    if ( $header_height ) {
+        echo '--header-height: ' . $header_height . 'px;';
+        echo '--header-height-neg: -' . $header_height . 'px;';
+    } else {
+        echo '--header-height: 0px;';
     }
-    echo '--header-mobile-breakpoint: '. $header_mobile_breakpoint .';';
-}
+    if ( $header_height && is_user_logged_in() ) {
+        $header_height_desktop = $header_height + 32;
+        echo '--header-height-logged-in: ' . $header_height_desktop . 'px;';
+        $header_height_mobile = $header_height + 46;
+        echo '--header-height-logged-in-mobile: ' . $header_height_mobile . 'px;';
+    } else {
+        echo '--header-height-logged-in: 32px;';
+        echo '--header-height-logged-in-mobile: 46px;';
+    }
 
-echo '}';
+echo '}'; // root end
 
+/*
 // gutters
 $column_width_half = null;
 $column_gutter_width = get_field('column_gutter_width', 'layout');
@@ -77,6 +55,7 @@ if ( $container_max_width ) {
         echo 'max-width: 1600px;';
     echo '}';
 }
+*/
 
 // header options
 
@@ -142,6 +121,7 @@ $colors = [
     'white',
 ];
 
+/*
 // custom button colors
 foreach ( $colors as $color ) {
 
@@ -201,6 +181,7 @@ foreach ( $colors as $color ) {
         }            
     }
 }
+*/
 
 // section dividers
 $section_dividers = [];

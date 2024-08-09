@@ -27,8 +27,6 @@ function get_spacing_bbc( $field, $field_type = false, $classes = false ) {
             }
         }
 
-        $classes[] = 'px-0';
-
     }
 
     if ( $field ) {

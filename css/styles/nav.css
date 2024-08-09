@@ -64,7 +64,7 @@
 }
 .header-toggle .cta-buttons-container {
     margin-left: auto;
-    margin-right: var(--bs-gutter-x);
+    margin-right: calc(var(--bs-gutter-x) / 2);
 }
 /** offcanvas **/
 /*** sticky nav ***/

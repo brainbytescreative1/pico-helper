@@ -1,3 +1,11 @@
+html:has(.fixed-top) #wpadminbar {
+    position: fixed;
+    top: 0 !important;
+    bottom: auto !important;
+}
+html:has(.fixed-top) #wpadminbar .quicklinks .menupop .ab-sub-wrapper {
+    bottom: unset !important;
+}
 body {
     overflow-x: hidden;
 }

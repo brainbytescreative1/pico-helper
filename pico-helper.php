@@ -4,7 +4,7 @@
  *
  * @package       BBC
  * @author        Brain Bytes Creative
- * @version       1.0.1
+ * @version       1.0.2
  *
  * @wordpress-plugin
  * Plugin Name:   Pico Helper

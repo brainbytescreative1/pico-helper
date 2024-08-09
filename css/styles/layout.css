@@ -1,3 +1,6 @@
+body {
+    overflow-x: hidden;
+}
 /** containers **/
 .element-container {
     position: relative;

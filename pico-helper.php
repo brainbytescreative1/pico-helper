@@ -56,6 +56,7 @@ if ( ( 'picostrap5' === wp_get_theme()->parent_theme ) && class_exists('acf') ) 
     add_action( 'wp_enqueue_scripts', 'bbc_stylesheet_css_js' , 100 );
     function bbc_stylesheet_css_js() {
         wp_enqueue_style( 'bbc_style', plugin_dir_url( __FILE__ ) . 'css/bbc-style.css', array(), null );
+        //wp_enqueue_script( 'bbc_scripts', plugin_dir_url( __FILE__ ) . 'css/bbc-scripts.js', array(), null );
         //wp_enqueue_style( 'dynamic_styles', plugin_dir_url( __FILE__ ) . 'css/dynamic-style.css' );
     }
 
@@ -64,14 +65,19 @@ if ( ( 'picostrap5' === wp_get_theme()->parent_theme ) && class_exists('acf') ) 
     function load_admin_style() {
         wp_enqueue_style( 'admin_style', plugin_dir_url( __FILE__ ) . 'css/bbc-admin-style.css', array(), null );
         wp_enqueue_style( 'bbc_admin_style', plugin_dir_url( __FILE__ ) . 'css/bbc-style.css', array(), null );
+        //wp_enqueue_script( 'bbc_admin_scripts', plugin_dir_url( __FILE__ ) . 'css/bbc-admin-scripts.js', array(), null );
         //wp_enqueue_style( 'admin_dynamic_styles', plugin_dir_url( __FILE__ ) . 'css/dynamic-style.css', array(), null );
     }
 
     // add dynamic styles to head
-    add_action('admin_head', 'bbc_add_dynamic_styles');
-    add_action('wp_head', 'bbc_add_dynamic_styles');
+    //add_action('admin_head', 'bbc_add_dynamic_styles');
     function bbc_add_dynamic_styles(){ 
         include __DIR__ . '/css/dynamic.php';
+    }
+
+    add_action('admin_head', 'bbc_add_dynamic_admin_styles');
+    function bbc_add_dynamic_admin_styles(){ 
+        include __DIR__ . '/css/dynamic-admin.php';
     }
 
     // function generate_options_css() {
@@ -114,7 +120,6 @@ if ( ( 'picostrap5' === wp_get_theme()->parent_theme ) && class_exists('acf') ) 
             echo '<footer id="theme-footer">';
                 dynamic_sidebar( 'reviews' );
                 dynamic_sidebar( 'footerfull' );
-                dynamic_sidebar( 'topmenu' );
             echo '</footer>';
         }
 

@@ -166,8 +166,7 @@
                 [
                     {
                         "field": "field_66ad7ac5a7e19",
-                        "operator": "==",
-                        "value": "fa"
+                        "operator": "!=empty"
                     }
                 ]
             ],
@@ -504,7 +503,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1723163504,
+    "modified": 1723172170,
     "acfe_categories": {
         "global-functions": "Global Functions"
     }

@@ -23,16 +23,16 @@ function get_rgb_color_bbc( $field, $get_field = false, $sub = false ) {
         } else {
             if ( $field['custom_color'] ) {
                 if ( $transparency < 100 ) {
-                    if ( function_exists('hexToRgb') ) {
-                        $return_color = hexToRgb($field['custom_color'], $transparency);
+                    if ( function_exists('hex_to_rgb') ) {
+                        $return_color = hex_to_rgb($field['custom_color'], $transparency);
                     }
                 } else {
                     $return_color = $field['custom_color'];
                 }
             } elseif ( $field['theme_colors'] ) {
                 if ( $transparency < 100 ) {
-                    if ( function_exists('hexToRgb') ) {
-                        $return_color = hexToRgb( get_theme_mod('SCSSvar_' . $field['theme_colors'] ), $transparency );
+                    if ( function_exists('hex_to_rgb') ) {
+                        $return_color = hex_to_rgb( get_theme_mod('SCSSvar_' . $field['theme_colors'] ), $transparency );
                     }
                 } else {
                     $return_color = 'var(--bs-'. $field['theme_colors'] .')';
@@ -45,7 +45,7 @@ function get_rgb_color_bbc( $field, $get_field = false, $sub = false ) {
     }
 }
 
-function hexToRgb($hex, $alpha = false) {
+function hex_to_rgb($hex, $alpha = false) {
     if ( $hex ) {
         $hex      = str_replace('#', '', $hex);
         $length   = strlen($hex);
@@ -60,6 +60,38 @@ function hexToRgb($hex, $alpha = false) {
         }
     } else {
         return null;
+    }
+}
+
+function hex_to_rgb_values($hex, $alpha = false) {
+    if ( $hex ) {
+        $hex      = str_replace('#', '', $hex);
+        $length   = strlen($hex);
+        $rgb['r'] = hexdec($length == 6 ? substr($hex, 0, 2) : ($length == 3 ? str_repeat(substr($hex, 0, 1), 2) : 0));
+        $rgb['g'] = hexdec($length == 6 ? substr($hex, 2, 2) : ($length == 3 ? str_repeat(substr($hex, 1, 1), 2) : 0));
+        $rgb['b'] = hexdec($length == 6 ? substr($hex, 4, 2) : ($length == 3 ? str_repeat(substr($hex, 2, 1), 2) : 0));
+
+        return [
+            'r' => $rgb['r'],
+            'g' => $rgb['g'],
+            'b' => $rgb['b']
+        ];
+    } else {
+        return null;
+    }
+}
+
+function rgb_bw_contrast($r, $g, $b) {
+    $color = array(
+        'r' => ($r < 128) ? 255 : 0,
+        'g' => ($g < 128) ? 255 : 0,
+        'b' => ($b < 128) ? 255 : 0
+    );
+
+    if ( ( ( $color['r'] * 0.299 ) + ( $color['g'] * 0.587 ) + ( $color['b'] * 0.114 ) ) > 186 ) {
+        return '#ffffff';
+    } else {
+        return '#000000';
     }
 }
 

@@ -44,6 +44,8 @@ if ( $header_mobile_breakpoint ) {
     echo '--header-mobile-breakpoint: '. $header_mobile_breakpoint .';';
 }
 
+echo '}';
+
 // gutters
 $column_width_half = null;
 $column_gutter_width = get_field('column_gutter_width', 'layout');

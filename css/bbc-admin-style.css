@@ -158,3 +158,8 @@
 .hide-clone-title [data-name="theme_colors"] .acf-label {
     display: none !important;
 }
+
+/** icon picker **/
+.acf-svg-icon-picker__popup-holder {
+    z-index: 100001 !important;
+}

@@ -24,13 +24,19 @@ function get_icon_bbc($field) {
 
             $icon_classes[] = 'icon-element';
 
+            $color = null;
+            $width = null;
+            $height = null;
+
             $styles = if_array_value($field, 'icon_styles');
             if ( $styles ) {
                 
                 if ( if_array_value($styles, 'custom_color') ) {
                     $icon_styles[] = 'color: ' . if_array_value($styles, 'custom_color') . ';';
+                    $color = 'color: ' . if_array_value($styles, 'custom_color');
                 } elseif ( if_array_value($styles, 'theme_colors') ) {
                     $icon_classes[] = 'text-' . if_array_value($styles, 'theme_colors');
+                    $color = 'var(--bs-' . if_array_value($styles, 'theme_colors') . ')';
                 }
                 $font_size = if_array_value($styles, 'font_size');
                 if ( $font_size['value'] ) {
@@ -39,10 +45,12 @@ function get_icon_bbc($field) {
                 $width = if_array_value($styles, 'width');
                 if ( $width['value'] ) {
                     $icon_styles[] = 'width: ' . if_array_value($width, 'value') . if_array_value($width, 'unit') . ';';
+                    $svg_width = if_array_value($width, 'value');
                 }
                 $height = if_array_value($styles, 'height');
                 if ( $height['value'] ) {
                     $icon_styles[] = 'height: ' . if_array_value($height, 'value') . if_array_value($height, 'unit') . ';';
+                    $svg_height = if_array_value($height, 'value');
                 }
                 $position = if_array_value($styles, 'position');
                 if ( $position ) {
@@ -50,6 +58,10 @@ function get_icon_bbc($field) {
                 }
                 if ( $styles['icon_classes'] ) {
                     $icon_classes[] = if_array_value($styles, 'icon_classes');
+                }
+
+                if ( $field['add_icon'] === 'svg' ) {
+                    $icon_classes[] = 'd-inline-block';
                 }
 
             }
@@ -69,10 +81,9 @@ function get_icon_bbc($field) {
                     $icon = '<img class="'. $icon_classes .'" style="'. $icon_styles .'" src="'. $icon['url'] .'" alt="" />';
                 }
             } elseif ( $field['add_icon'] === 'svg' ) {
-                /*
-                $svg_icon = str_replace('<svg', '<svg style="'. $icon_styles .' fill: '. $svg_color .'" viewBox="0 0 '. $svg_width .' '. $svg_height .'"', $svg_icon);
+                $svg_icon = $field['svg_icon'];
+                $svg_icon = str_replace('<svg', '<svg style="'. $icon_styles .' width="'. $svg_width .'" height="'. $svg_height .'" fill: '. $color .'" viewBox="0 0 '. $svg_width .' '. $svg_height .'"', $svg_icon);
                 $icon = '<div class="'. $icon_classes .'">' . $svg_icon . '</div>';
-                */
             }
             return $icon;
         }

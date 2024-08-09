@@ -5,7 +5,7 @@ function global_site_variables_admin(){ ?>
     <style>
 
         <?php
-
+        /*
         $base_name = '';
         $base_short = '';
         $base = get_theme_mod('SCSSvar_font-family-base');
@@ -69,6 +69,7 @@ function global_site_variables_admin(){ ?>
             }
             <?php
         }
+        */
 
         $colors = [
             'primary',

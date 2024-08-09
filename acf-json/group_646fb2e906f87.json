@@ -53,7 +53,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "50",
                         "class": "",
                         "id": ""
                     },
@@ -74,7 +74,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "50",
                         "class": "",
                         "id": ""
                     },
@@ -100,26 +100,90 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "50",
                         "class": "button-color-select",
                         "id": ""
                     },
-                    "choices": {
-                        "primary": "Primary",
-                        "secondary": "Secondary",
-                        "success": "Success",
-                        "info": "Info",
-                        "gray": "Gray",
-                        "light": "Light",
-                        "dark": "Dark",
-                        "white": "White"
-                    },
+                    "choices": [],
                     "default_value": null,
                     "return_format": "value",
                     "allow_null": 0,
                     "other_choice": 0,
                     "layout": "horizontal",
                     "save_other_choice": 0,
+                    "parent_repeater": "field_6488c2f07f26d"
+                },
+                {
+                    "key": "field_66b563eec608c",
+                    "label": "Icon",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "accordion",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "open": 0,
+                    "multi_expand": 0,
+                    "endpoint": 0,
+                    "parent_repeater": "field_6488c2f07f26d"
+                },
+                {
+                    "key": "field_66b55468d2cb3",
+                    "label": "Button Icon",
+                    "name": "button_icon",
+                    "aria-label": "",
+                    "type": "clone",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "clone": [
+                        "group_66ad7ac59f7a5"
+                    ],
+                    "display": "group",
+                    "layout": "block",
+                    "prefix_label": 0,
+                    "prefix_name": 1,
+                    "acfe_seamless_style": 1,
+                    "acfe_clone_modal": 0,
+                    "acfe_clone_modal_close": 0,
+                    "acfe_clone_modal_button": "",
+                    "acfe_clone_modal_size": "large",
+                    "parent_repeater": "field_6488c2f07f26d"
+                },
+                {
+                    "key": "field_66b55e1597c77",
+                    "label": "Icon Position",
+                    "name": "icon_position",
+                    "aria-label": "",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "left": "left",
+                        "right": "right",
+                        "top": "top",
+                        "bottom": "bottom"
+                    },
+                    "default_value": "left",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "layout": "horizontal",
                     "parent_repeater": "field_6488c2f07f26d"
                 },
                 {
@@ -190,317 +254,6 @@
                     "allow_null": 0,
                     "layout": "horizontal",
                     "parent_repeater": "field_6488c2f07f26d"
-                },
-                {
-                    "key": "field_6669d5194990e",
-                    "label": "Icon",
-                    "name": "",
-                    "aria-label": "",
-                    "type": "accordion",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "open": 0,
-                    "multi_expand": 0,
-                    "endpoint": 0,
-                    "parent_repeater": "field_6488c2f07f26d"
-                },
-                {
-                    "key": "field_656656b05a25d",
-                    "label": "Add Icon\/Image",
-                    "name": "add_icon_image",
-                    "aria-label": "",
-                    "type": "button_group",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "100",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "none": "none",
-                        "icon": "icon",
-                        "image": "image"
-                    },
-                    "default_value": "none",
-                    "return_format": "value",
-                    "allow_null": 0,
-                    "layout": "horizontal",
-                    "parent_repeater": "field_6488c2f07f26d"
-                },
-                {
-                    "key": "field_6494bc1e53cef",
-                    "label": "Button Icon",
-                    "name": "button_icon",
-                    "aria-label": "",
-                    "type": "font-awesome",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_656656b05a25d",
-                                "operator": "==",
-                                "value": "icon"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "icon_sets": [
-                        "solid",
-                        "regular",
-                        "light",
-                        "thin",
-                        "duotone",
-                        "fak",
-                        "brands"
-                    ],
-                    "custom_icon_set": "",
-                    "default_label": "",
-                    "default_value": "",
-                    "save_format": "class",
-                    "allow_null": 1,
-                    "show_preview": 1,
-                    "enqueue_fa": 0,
-                    "fa_live_preview": "",
-                    "choices": [],
-                    "parent_repeater": "field_6488c2f07f26d"
-                },
-                {
-                    "key": "field_656657085a25f",
-                    "label": "Icon Color",
-                    "name": "icon_color",
-                    "aria-label": "",
-                    "type": "clone",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_656656b05a25d",
-                                "operator": "==",
-                                "value": "icon"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "100",
-                        "class": "",
-                        "id": ""
-                    },
-                    "clone": [
-                        "field_646f9085bbc67"
-                    ],
-                    "display": "group",
-                    "layout": "block",
-                    "prefix_label": 0,
-                    "prefix_name": 0,
-                    "acfe_seamless_style": 1,
-                    "acfe_clone_modal": 0,
-                    "acfe_clone_modal_close": 0,
-                    "acfe_clone_modal_button": "",
-                    "acfe_clone_modal_size": "large",
-                    "parent_repeater": "field_6488c2f07f26d"
-                },
-                {
-                    "key": "field_656656e15a25e",
-                    "label": "Button Image",
-                    "name": "button_image",
-                    "aria-label": "",
-                    "type": "image",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_656656b05a25d",
-                                "operator": "==",
-                                "value": "image"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "uploader": "wp",
-                    "return_format": "url",
-                    "library": "all",
-                    "acfe_thumbnail": 0,
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": "",
-                    "mime_types": "",
-                    "preview_size": "medium",
-                    "parent_repeater": "field_6488c2f07f26d"
-                },
-                {
-                    "key": "field_6494bc5753cf0",
-                    "label": "Icon Position",
-                    "name": "icon_position",
-                    "aria-label": "",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_656656b05a25d",
-                                "operator": "==",
-                                "value": "icon"
-                            }
-                        ],
-                        [
-                            {
-                                "field": "field_656656b05a25d",
-                                "operator": "==",
-                                "value": "image"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "top": "Top",
-                        "left": "Left",
-                        "right": "Right",
-                        "bottom": "Bottom"
-                    },
-                    "default_value": "left",
-                    "return_format": "value",
-                    "multiple": 0,
-                    "allow_null": 0,
-                    "ui": 0,
-                    "ajax": 0,
-                    "placeholder": "",
-                    "allow_custom": 0,
-                    "search_placeholder": "",
-                    "parent_repeater": "field_6488c2f07f26d"
-                },
-                {
-                    "key": "field_65d91089963e8",
-                    "label": "Icon Size",
-                    "name": "icon_size",
-                    "aria-label": "",
-                    "type": "number",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_656656b05a25d",
-                                "operator": "==",
-                                "value": "icon"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "min": "",
-                    "max": "",
-                    "placeholder": "",
-                    "step": "",
-                    "prepend": "",
-                    "append": "px",
-                    "parent_repeater": "field_6488c2f07f26d"
-                },
-                {
-                    "key": "field_6567553601d83",
-                    "label": "Image Size",
-                    "name": "image_size",
-                    "aria-label": "",
-                    "type": "group",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_656656b05a25d",
-                                "operator": "==",
-                                "value": "image"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "layout": "block",
-                    "acfe_seamless_style": 0,
-                    "acfe_group_modal": 0,
-                    "acfe_group_modal_close": 0,
-                    "acfe_group_modal_button": "",
-                    "acfe_group_modal_size": "large",
-                    "parent_repeater": "field_6488c2f07f26d",
-                    "sub_fields": [
-                        {
-                            "key": "field_6567554b01d84",
-                            "label": "Width",
-                            "name": "width",
-                            "aria-label": "",
-                            "type": "number",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "50",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "min": "",
-                            "max": "",
-                            "placeholder": "",
-                            "step": "",
-                            "prepend": "",
-                            "append": "px"
-                        },
-                        {
-                            "key": "field_6567555901d85",
-                            "label": "Height",
-                            "name": "height",
-                            "aria-label": "",
-                            "type": "number",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "50",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "min": "",
-                            "max": "",
-                            "placeholder": "",
-                            "step": "",
-                            "prepend": "",
-                            "append": "px"
-                        }
-                    ]
                 },
                 {
                     "key": "field_6488c3767f270",
@@ -796,7 +549,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1721312136,
+    "modified": 1723163735,
     "acfe_categories": {
         "elements": "Elements"
     }

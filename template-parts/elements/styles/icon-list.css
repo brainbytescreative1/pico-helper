@@ -4,6 +4,7 @@
 }
 .icon-list li {
     display: flex;
+    line-height: 1em;
 }
 .icon-list a {
     display: flex;

@@ -1,4 +1,5 @@
-<?php Header ("Content-type: text/css; charset=utf-8"); ?>
+<?php //Header ("Content-type: text/css; charset=utf-8"); ?>
+<style>
 <?php
 echo ':root {'; // root start
 // header root
@@ -21,16 +22,27 @@ if ( $header_height && is_user_logged_in() ) {
 
 $header_mobile_breakpoint = get_theme_mod('picostrap_header_navbar_expand' );
 if ( $header_mobile_breakpoint ) {
-    $header_mobile_breakpoint = match ($header_mobile_breakpoint) {
-        'navbar-expand-sm' => '576px',
-        'navbar-expand-md' => '768px',
-        'navbar-expand-lg' => '992px',
-        'navbar-expand-lg' => '1200px',
-        'navbar-expand-lg' => '1468px',
-    };
+    switch ($header_mobile_breakpoint) {
+        case 'navbar-expand-sm':
+            $header_mobile_breakpoint = '576px';
+            break;
+        case 'navbar-expand-md':
+            $header_mobile_breakpoint = '768px';
+            break;
+        case 'navbar-expand-lg':
+            $header_mobile_breakpoint = '992px';
+            break;
+        case 'navbar-expand-xl':
+            $header_mobile_breakpoint = '1200px';
+            break;
+        case 'navbar-expand-xxl':
+            $header_mobile_breakpoint = '1468px';
+            break;
+        default:
+            $header_mobile_breakpoint = '';
+    }
     echo '--header-mobile-breakpoint: '. $header_mobile_breakpoint .';';
 }
-echo '}'; // root end
 
 // gutters
 $column_width_half = null;
@@ -158,17 +170,17 @@ foreach ( $colors as $color ) {
 
                 if ( isset( $color['background_color'] ) ) {
                     if ( $color['background_color'] ) {
-                        echo 'background-color: '. $color['background_color'].' !important;';
+                        echo 'background-color: '. $color['background_color'].';';
                     }
                 }
                 if ( isset( $color['text_color'] ) ) {
                     if ( $color['text_color'] ) {
-                        echo 'color: '. $color['text_color'].' !important;';
+                        echo 'color: '. $color['text_color'].';';
                     }
                 }
                 if ( isset( $color['border_color'] ) ) {
                     if ( $color['border_color'] ) {
-                        echo 'border-color: '. $color['border_color'].' !important;';
+                        echo 'border-color: '. $color['border_color'].';';
                     }
                 }
 
@@ -179,7 +191,7 @@ foreach ( $colors as $color ) {
                 if ( $color['text_color'] ) {
                     echo '.btn-'. $field .':hover {';
 
-                        echo 'color: '. $color['text_color'].' !important;';
+                        echo 'color: '. $color['text_color'].';';
 
                     echo '}';
                 }
@@ -264,3 +276,5 @@ if ( $section_dividers ) {
         <?php
     }
 }
+?>
+</style>

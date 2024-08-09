@@ -47,6 +47,11 @@
 .cta-buttons-container a {
     font-size: var(--bs-nav-link-font-size);
 }
+/* header buttons */
+.cta-buttons-container .button-group {
+    display: flex;
+    align-items: center;
+}
 /** navbar styles **/
 .header-flush .navbar-nav {
     width: 100%;
@@ -62,11 +67,6 @@
     margin-right: var(--bs-gutter-x);
 }
 /** offcanvas **/
-/*
-.offcanvas-header {
-    padding: auto calc(var(--bs-offcanvas-padding-y) / 2);
-}
-*/
 /*** sticky nav ***/
 /* nav */
 #navbar-sticky {

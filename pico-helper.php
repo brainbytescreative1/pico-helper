@@ -42,6 +42,7 @@ if ( class_exists('acf') ) {
 }
 
 /*** theme functions ***/
+
 if ( ( 'picostrap5' === wp_get_theme()->parent_theme ) && class_exists('acf') ) {
 
     // add gutenberg styles
@@ -55,7 +56,7 @@ if ( ( 'picostrap5' === wp_get_theme()->parent_theme ) && class_exists('acf') ) 
     add_action( 'wp_enqueue_scripts', 'bbc_stylesheet_css_js' , 100 );
     function bbc_stylesheet_css_js() {
         wp_enqueue_style( 'bbc_style', plugin_dir_url( __FILE__ ) . 'css/bbc-style.css', array(), null );
-        wp_enqueue_style( 'dynamic_styles', plugin_dir_url( __FILE__ ) . 'css/dynamic-style.css' );
+        //wp_enqueue_style( 'dynamic_styles', plugin_dir_url( __FILE__ ) . 'css/dynamic-style.css' );
     }
 
     // enqueue admin stylesheet
@@ -63,8 +64,24 @@ if ( ( 'picostrap5' === wp_get_theme()->parent_theme ) && class_exists('acf') ) 
     function load_admin_style() {
         wp_enqueue_style( 'admin_style', plugin_dir_url( __FILE__ ) . 'css/bbc-admin-style.css', array(), null );
         wp_enqueue_style( 'bbc_admin_style', plugin_dir_url( __FILE__ ) . 'css/bbc-style.css', array(), null );
-        wp_enqueue_style( 'admin_dynamic_styles', plugin_dir_url( __FILE__ ) . 'css/dynamic-style.css', array(), null );
+        //wp_enqueue_style( 'admin_dynamic_styles', plugin_dir_url( __FILE__ ) . 'css/dynamic-style.css', array(), null );
     }
+
+    // add dynamic styles to head
+    add_action('admin_head', 'bbc_add_dynamic_styles');
+    add_action('wp_head', 'bbc_add_dynamic_styles');
+    function bbc_add_dynamic_styles(){ 
+        include __DIR__ . '/css/dynamic.php';
+    }
+
+    // function generate_options_css() {
+    //     $ss_dir = __DIR__;
+    //     ob_start(); // Capture all output into buffer
+    //     require($ss_dir . '/css/dynamic.php'); // Grab the custom-style.php file
+    //     $css = ob_get_clean(); // Store output in a variable, then flush the buffer
+    //     file_put_contents($ss_dir . '/css/dynamic-style.css', $css, LOCK_EX); // Save it as a css file
+    // }
+    // add_action( 'acf/save_post', 'generate_options_css', 20 ); //Parse the output and write the CSS file on post save
 
     // register blocks
     add_action( 'init', 'register_acf_blocks' );
@@ -105,15 +122,6 @@ if ( ( 'picostrap5' === wp_get_theme()->parent_theme ) && class_exists('acf') ) 
 
     }
     add_action( 'wp_footer', 'footer_widget' );
-
-    function generate_options_css() {
-        $ss_dir = __DIR__;
-        ob_start(); // Capture all output into buffer
-        require($ss_dir . '/css/dynamic.php'); // Grab the custom-style.php file
-        $css = ob_get_clean(); // Store output in a variable, then flush the buffer
-        file_put_contents($ss_dir . '/css/dynamic-style.css', $css, LOCK_EX); // Save it as a css file
-    }
-    add_action( 'acf/save_post', 'generate_options_css', 20 ); //Parse the output and write the CSS file on post save
 
     // modify the path to the icons directory
     add_filter('acf_icon_path_suffix', 'acf_icon_path_suffix');

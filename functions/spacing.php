@@ -37,6 +37,8 @@ function get_spacing_bbc( $field, $field_type = false, $classes = false ) {
         if ( $padding_all && ( $padding_all !== 'default' ) ) {
             if ( $padding_all === 'none' ) {
                 $classes[] = 'p-0';
+            } else {
+                $classes[] = 'p-' . $padding_all;
             }
             /*
             $classes[] = 'px-lg-' . $padding_all;
@@ -51,14 +53,10 @@ function get_spacing_bbc( $field, $field_type = false, $classes = false ) {
         $margin_all = $field['margin_all'];
         if ( $margin_all && ( $margin_all !== 'default' ) ) {
             if ( $margin_all === 'none' ) {
-                $margin_all = '0';
+                $margin_all = 'm-0';
+            } else {
+                $classes[] = 'm-' . $padding_all;
             }
-            $classes[] = 'mx-lg-' . $margin_all;
-            $classes[] = 'mx-' . $margin_all;
-            $classes[] = 'my-lg-' . $margin_all;
-            $classes[] = 'my-' . $margin_all;
-            $classes[] = 'm-lg-' . $margin_all;
-            $classes[] = 'm-' . $margin_all;
         }
 
         // custom spacing

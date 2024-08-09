@@ -72,3 +72,23 @@ function add_font_awesome(){
 
     }
 }
+
+// add custom fonts
+function bbc_get_fonts(){ 
+    $custom_fonts = get_field('custom_fonts', 'integrations');
+    if( $custom_fonts ) {
+        echo $custom_fonts;
+        add_action('init', 'bbc_add_fonts');
+    }
+}
+add_action('admin_head', 'bbc_get_fonts');
+
+function bbc_add_fonts() {
+    $add_custom_fonts = get_field('custom_font_options', 'integrations');
+    if ( $add_custom_fonts === 'admin' ) {
+        add_action('admin_head', 'bbc_get_fonts');
+    } elseif ( $add_custom_fonts === 'front' ) {
+        add_action('admin_head', 'bbc_get_fonts');
+        add_action('wp_head', 'bbc_get_fonts');
+    }
+}

@@ -16,40 +16,46 @@ function get_icon_bbc($field) {
     if ( $field ) {
         
         $icon = '';
-
-        if ( $field['add_icon'] ) {
+        
+        if ( if_array_value($field, 'add_icon') ) {
 
             $icon_classes = [];
             $icon_styles = [];
 
-            $styles = $field['icon_styles'];
+            $icon_classes[] = 'icon-element';
+
+            $styles = if_array_value($field, 'icon_styles');
             if ( $styles ) {
                 
-                if ( $styles['custom_color'] ) {
-                    $icon_styles[] = 'color: ' . $styles['custom_color'] . ';';
-                } elseif ( $styles['theme_colors'] ) {
-                    $icon_classes[] = 'text-' . $styles['theme_colors'];
+                if ( if_array_value($styles, 'custom_color') ) {
+                    $icon_styles[] = 'color: ' . if_array_value($styles, 'custom_color') . ';';
+                } elseif ( if_array_value($styles, 'theme_colors') ) {
+                    $icon_classes[] = 'text-' . if_array_value($styles, 'theme_colors');
                 }
-                $font_size = $styles['font_size'];
+                $font_size = if_array_value($styles, 'font_size');
                 if ( $font_size['value'] ) {
-                    $icon_styles[] = 'font-size: ' . $font_size['value'] . $font_size['unit'] . ';';
+                    $icon_styles[] = 'font-size: ' . if_array_value($font_size, 'value') . if_array_value($font_size, 'unit') . ';';
                 }
-                $width = $styles['width'];
+                $width = if_array_value($styles, 'width');
                 if ( $width['value'] ) {
-                    $icon_styles[] = 'width: ' . $width['value'] . $width['unit'] . ';';
+                    $icon_styles[] = 'width: ' . if_array_value($width, 'value') . if_array_value($width, 'unit') . ';';
                 }
-                $height = $styles['height'];
+                $height = if_array_value($styles, 'height');
                 if ( $height['value'] ) {
-                    $icon_styles[] = 'height: ' . $height['value'] . $height['unit'] . ';';
+                    $icon_styles[] = 'height: ' . if_array_value($height, 'value') . if_array_value($height, 'unit') . ';';
+                }
+                $position = if_array_value($styles, 'position');
+                if ( $position ) {
+                    $icon_classes[] = 'icon-' . $position;                    
                 }
                 if ( $styles['icon_classes'] ) {
-                    $icon_classes[] = $styles['icon_classes'];
+                    $icon_classes[] = if_array_value($styles, 'icon_classes');
                 }
 
             }
 
-            $icon_classes = implode(' ', $icon_classes);
-            $icon_styles = implode(' ', $icon_styles);
+            $icon_classes = trim(implode(' ', $icon_classes));
+            $icon_styles = trim(implode(' ', $icon_styles));
 
             if ( $field['add_icon'] === 'bootstrap' ) {
                 $icon = $field['bootstrap_icon'];

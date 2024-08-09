@@ -2,7 +2,7 @@
 
 if( get_row_layout() == 'heading' ):
 
-    $heading_classes = [];
+    $classes = [];
 
     // content
     $text = get_sub_field('text');
@@ -15,22 +15,23 @@ if( get_row_layout() == 'heading' ):
     if ( $text && $tag ) {
 
         // process global functions
-        $heading_classes[] = 'element';
+        $classes[] = 'element';
+        $styles = [];
 
         if ( function_exists('get_text_styles_bbc') ) {
-            $heading_classes[] = get_text_styles_bbc(get_sub_field('text_styles'));
+            $classes[] = get_text_styles_bbc(get_sub_field('text_styles'));
         }
         if ( function_exists('get_spacing_bbc') ) {
-            $heading_classes[] = get_spacing_bbc(get_sub_field('heading_spacing'));
+            $classes[] = get_spacing_bbc(get_sub_field('heading_spacing'));
         }
 
         if ( $page_title === 'enabled' ) {
-            $heading_classes[] = 'page-title';
+            $classes[] = 'page-title';
         }
         
         if ( $line_through === 'enabled' ) {
             $rand = rand(1, 9999);
-            $heading_classes[] = 'line-through';
+            $classes[] = 'line-through';
     
             $line_size = get_sub_field('line_size');
             $line_color = get_sub_field('line_color');
@@ -47,9 +48,17 @@ if( get_row_layout() == 'heading' ):
             <?php
         }
 
-        $heading_classes = trim(implode(' ', $heading_classes));
+        $sizing = get_sub_field('sizing');
+        if ( function_exists('get_sizing_bbc') ) {
+            $sizing = get_sizing_bbc(get_sub_field('sizing'));
+            $classes[] = $sizing['classes'];
+            $styles[] = $sizing['styles'];
+        }
 
-        echo '<' . $tag . ' class="'. esc_attr($heading_classes) .'">' . $text . '</' . $tag . '>';
+        $classes = esc_attr(trim(implode(' ', array_unique($classes))));
+        $styles = esc_attr(trim(implode(' ', array_unique($styles))));
+
+        echo '<' . $tag . ' class="'. $classes .'" style="'. $styles .'">' . $text . '</' . $tag . '>';
         
 
     }

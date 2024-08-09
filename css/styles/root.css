@@ -4,3 +4,6 @@
 .bg-text {
     background: var(--bs-text);
 }
+.text-text {
+    color: var(--bs-text);
+}

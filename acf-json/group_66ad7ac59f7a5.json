@@ -76,13 +76,7 @@
             "icon_sets": [
                 "sharp_solid",
                 "regular",
-                "sharp_regular",
                 "light",
-                "sharp_light",
-                "thin",
-                "sharp_thin",
-                "sharp-duotone_solid",
-                "duotone_solid",
                 "fak",
                 "brands"
             ],
@@ -90,9 +84,9 @@
             "default_label": "",
             "default_value": "",
             "save_format": "class",
-            "allow_null": 0,
+            "allow_null": 1,
             "show_preview": 1,
-            "enqueue_fa": 1,
+            "enqueue_fa": 0,
             "fa_live_preview": "",
             "choices": []
         },
@@ -172,7 +166,8 @@
                 [
                     {
                         "field": "field_66ad7ac5a7e19",
-                        "operator": "!=empty"
+                        "operator": "==",
+                        "value": "fa"
                     }
                 ]
             ],
@@ -186,7 +181,6 @@
             "acfe_group_modal_close": 1,
             "acfe_group_modal_button": "Icon Styles",
             "acfe_group_modal_size": "large",
-            "acfe_seamless_style": 0,
             "sub_fields": [
                 {
                     "key": "field_66ad7ac5c996a",
@@ -480,31 +474,9 @@
                     "placeholder": "",
                     "prepend": "",
                     "append": ""
-                },
-                {
-                    "key": "field_66ad7ac5dc079",
-                    "label": "Position",
-                    "name": "position",
-                    "aria-label": "",
-                    "type": "button_group",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "25",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "left": "left",
-                        "right": "right"
-                    },
-                    "default_value": "",
-                    "return_format": "value",
-                    "allow_null": 1,
-                    "layout": "horizontal"
                 }
-            ]
+            ],
+            "acfe_seamless_style": 0
         }
     ],
     "location": [
@@ -532,7 +504,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1722645231,
+    "modified": 1723163504,
     "acfe_categories": {
         "global-functions": "Global Functions"
     }
